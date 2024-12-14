@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
 
-interface AutoMateProps{
-  onLogin: (credentials: { email: string; password: string }) => void;
-  onSignUp: (userData: { username: string; email: string; password: string }) => void;
-}
-
-const AutoMate: React.FC<AutoMateProps> = ({ onLogin, onSignUp }) => {
+const AutoMate: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const handleToggle = () => {
@@ -27,9 +22,9 @@ const AutoMate: React.FC<AutoMateProps> = ({ onLogin, onSignUp }) => {
       </div>
 
       {isLogin ? (
-        <Login onLogin={onLogin} />
+        <Login />
       ) : (
-        <Signup onSignUp={onSignUp} />
+        <Signup />
       )}
     </div>
   );
