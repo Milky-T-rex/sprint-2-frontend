@@ -6,6 +6,10 @@ import Bgcover from "../assets/Backgroundcover.svg";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
 // import CustomProduct from "./CustomProduct";
+import greenTea from "../assets/Green-tea-powder.jpg";
+import blackTea from "../assets/Black-tea.jpg";
+import oolongTea from "../assets/Oolong-tea.jpg";
+import whiteTea from "../assets/White-tea.jpg";
 
 interface DataForApi {
   selection: string;
@@ -16,6 +20,7 @@ interface DataForApi {
     sweetness: string;
     body: string;
   };
+  product: string;
 }
 
 interface Type2 {
@@ -56,10 +61,12 @@ interface TeaRatings {
   "Black-tea": Tea[];
   "Oolong-tea": Tea[];
   "White-tea": Tea[];
-  // random: string[];
-  // [key: string]: Tea[] | string[]; // เพิ่ม index signature สำหรับคีย์ที่เป็น string
-  random: Tea[];  // แก้ไขให้เป็น Tea[] แทน string[]
-  [key: string]: Tea[];  // ช่วยให้รองรับ index signature ได้
+  random: {
+    "Green-tea": { name: string }[];
+    "Black-tea": { name: string }[];
+    "Oolong-tea": { name: string }[];
+    "White-tea": { name: string }[];
+  };
 }
 
 const Home = () => {
@@ -68,7 +75,13 @@ const Home = () => {
   const [modalType, setModalType] = useState(false);
   const [modalRatings, setModalRatings] = useState(false);
   const [modalProduct, setModalProduct] = useState(false);
-  const [customProduct, setcustomProduct] = useState({
+  const [tempRatings, setTempRatings] = useState<Ratings>({
+    healthy: 0,
+    sweetness: 0,
+    body: 0,
+  });
+
+  const [customProduct, setCustomProduct] = useState({
     img: arrowleft,
     teaName: "Green-tea",
   });
@@ -82,6 +95,7 @@ const Home = () => {
       sweetness: "",
       body: "",
     },
+    product: "",
   });
 
   const teaData: TeaCategory[] = [
@@ -98,10 +112,7 @@ const Home = () => {
         },
         {
           name: "Clean and Sweet",
-          varieties: [
-            { name: "Honey Green" },
-            { name: "Berry Green" },
-          ],
+          varieties: [{ name: "Honey Green" }, { name: "Berry Green" }],
         },
         {
           name: "Balanced",
@@ -113,9 +124,7 @@ const Home = () => {
         },
         {
           name: "Relax",
-          varieties: [
-            { name: "Matcha Mint" },
-          ],
+          varieties: [{ name: "Matcha Mint" }],
         },
       ],
     },
@@ -132,22 +141,15 @@ const Home = () => {
         },
         {
           name: "Clean and Sweet",
-          varieties: [
-            { name: "Caramel Delight" },
-            { name: "Spiced Chai" },
-          ],
+          varieties: [{ name: "Caramel Delight" }, { name: "Spiced Chai" }],
         },
         {
           name: "Balanced",
-          varieties: [
-            { name: "Cocoa Black" },
-            { name: "Lemon Black" },
-          ],
+          varieties: [{ name: "Cocoa Black" }, { name: "Lemon Black" }],
         },
         {
           name: "Relax",
-          varieties: [{ name: "Ginger Spice" }
-          ],
+          varieties: [{ name: "Ginger Spice" }],
         },
       ],
     },
@@ -156,13 +158,11 @@ const Home = () => {
       subcategories: [
         {
           name: "Refreshing",
-          varieties: [{ name: "Citrus Oolong" }
-          ],
+          varieties: [{ name: "Citrus Oolong" }],
         },
         {
           name: "Clean and Sweet",
-          varieties: [{ name: "Almond Oolong" }
-          ],
+          varieties: [{ name: "Almond Oolong" }],
         },
         {
           name: "Balanced",
@@ -197,10 +197,7 @@ const Home = () => {
         },
         {
           name: "Clean and Sweet",
-          varieties: [
-            { name: "Honey Green" },
-            { name: "Berry Green" },
-          ],
+          varieties: [{ name: "Honey Green" }, { name: "Berry Green" }],
         },
         {
           name: "Balanced",
@@ -212,10 +209,7 @@ const Home = () => {
         },
         {
           name: "Relax",
-          varieties: [
-            { name: "Matcha Mint" },
-            { name: "Honey Green" },
-          ],
+          varieties: [{ name: "Matcha Mint" }, { name: "Honey Green" }],
         },
       ],
     },
@@ -229,7 +223,7 @@ const Home = () => {
       { healthy: 2, sweetness: 2, body: 3, name: "Autumn Smooth" },
       { healthy: 3, sweetness: 1, body: 1, name: "Ginger Green" },
       { healthy: 3, sweetness: 2, body: 2, name: "Jasmine Green" },
-      { healthy: 3, sweetness: 3, body: 2, name: "Berry Green" }
+      { healthy: 3, sweetness: 3, body: 2, name: "Berry Green" },
     ],
     "Black-tea": [
       { healthy: 1, sweetness: 1, body: 2, name: "Ginger Spice" },
@@ -237,12 +231,12 @@ const Home = () => {
       { healthy: 2, sweetness: 3, body: 1, name: "Tropical Black" },
       { healthy: 3, sweetness: 1, body: 2, name: "Earl Grey Fusion" },
       { healthy: 3, sweetness: 2, body: 1, name: "Cocoa Black" },
-      { healthy: 3, sweetness: 3, body: 3, name: "Royal Black" }
+      { healthy: 3, sweetness: 3, body: 3, name: "Royal Black" },
     ],
     "Oolong-tea": [
       { healthy: 1, sweetness: 2, body: 3, name: "Citrus Oolong" },
       { healthy: 1, sweetness: 3, body: 3, name: "Almond Oolong" },
-      { healthy: 2, sweetness: 2, body: 1, name: "Spiced Oolong" }
+      { healthy: 2, sweetness: 2, body: 1, name: "Spiced Oolong" },
     ],
     "White-tea": [
       { healthy: 1, sweetness: 1, body: 1, name: "Mint White" },
@@ -255,9 +249,9 @@ const Home = () => {
       { healthy: 2, sweetness: 3, body: 2, name: "Vanilla Cream" },
       { healthy: 2, sweetness: 3, body: 3, name: "Coconut Breeze" },
       { healthy: 3, sweetness: 1, body: 3, name: "Lavender Whisper" },
-      { healthy: 3, sweetness: 2, body: 3, name: "Citrus White" }
+      { healthy: 3, sweetness: 2, body: 3, name: "Citrus White" },
     ],
-    "random": {
+    random: {
       "Green-tea": [
         { name: "Peach Green" },
         { name: "Honey Green" },
@@ -266,7 +260,7 @@ const Home = () => {
         { name: "Ginger Green" },
         { name: "Matcha Mint" },
         { name: "Jasmine Green" },
-        { name: "Berry Green" }
+        { name: "Berry Green" },
       ],
       "Black-tea": [
         { name: "Ginger Spice" },
@@ -276,7 +270,7 @@ const Home = () => {
         { name: "Tropical Black" },
         { name: "Earl Grey Fusion" },
         { name: "Cocoa Black" },
-        { name: "Royal Black" }
+        { name: "Royal Black" },
       ],
       "Oolong-tea": [
         { name: "Citrus Oolong" },
@@ -288,7 +282,7 @@ const Home = () => {
         { name: "Almond Oolong" },
         { name: "Oolong Harmony" },
         { name: "Floral Oolong" },
-        { name: "Ginger Oolong" }
+        { name: "Ginger Oolong" },
       ],
       "White-tea": [
         { name: "Mint White" },
@@ -301,17 +295,32 @@ const Home = () => {
         { name: "Vanilla Cream" },
         { name: "Coconut Breeze" },
         { name: "Citrus White" },
-        { name: "Coconut Breeze" }
-      ]
+        { name: "Coconut Breeze" },
+      ],
+    },
+  };
+
+  const getImageBySelection = (selection: string) => {
+    switch (selection) {
+      case "Green-tea":
+        return greenTea;
+      case "Black-tea":
+        return blackTea;
+      case "Oolong-tea":
+        return oolongTea;
+      case "White-tea":
+        return whiteTea;
+      default:
+        return "";
     }
   };
 
   function getRandomTea(dataForApi: DataForApi, teaData: TeaCategory[]) {
     // ค้นหาข้อมูลชาใน teaData ตาม selection
     const selectedTea = teaData.find((tea) => {
-      return (
-        dataForApi.selection.toLowerCase().includes(tea.name.toLowerCase().split("-")[0]) // ตรวจสอบชื่อเช่น Green, Black, Oolong
-      );
+      return dataForApi.selection
+        .toLowerCase()
+        .includes(tea.name.toLowerCase().split("-")[0]); // ตรวจสอบชื่อเช่น Green, Black, Oolong
     });
 
     if (!selectedTea) {
@@ -341,7 +350,7 @@ const Home = () => {
     selection: string,
     type2: Type2,
     teaRating: TeaRatings
-  ): string => {
+  ): string | undefined => {
     const teaList = teaRating[selection as keyof TeaRatings];
 
     if (teaList && Array.isArray(teaList)) {
@@ -358,25 +367,38 @@ const Home = () => {
         return matchedTea.name;
       } else {
         // ถ้าไม่พบข้อมูลที่ตรงกันให้สุ่มจาก random
-        const randomIndex = Math.floor(Math.random() * teaRating.random.length);
-        const randomTea = teaRating.random[randomIndex];
+        const randomCategory = Object.keys(
+          teaRating.random
+        ) as (keyof typeof teaRating.random)[];
+        const randomCategoryIndex = Math.floor(
+          Math.random() * randomCategory.length
+        );
+        const randomTeaCategory = randomCategory[randomCategoryIndex];
+        const randomTeaList = teaRating.random[randomTeaCategory];
 
-        // ตรวจสอบว่าเป็น Tea object ก่อน (หาก `random` เป็น Tea[])
-        if (randomTea && typeof randomTea === "object" && "name" in randomTea) {
-          return randomTea.name; // คืนค่า name ของชา
+        if (Array.isArray(randomTeaList) && randomTeaList.length > 0) {
+          const randomIndex = Math.floor(Math.random() * randomTeaList.length);
+          const randomTea = randomTeaList[randomIndex];
+
+          if (
+            randomTea &&
+            typeof randomTea === "object" &&
+            "name" in randomTea
+          ) {
+            return randomTea.name; // คืนค่า name ของชา
+          }
         }
       }
     }
 
-    // กรณีที่ไม่มี teaList หรือไม่พบข้อมูลที่ตรงกัน
-    return "Tea not found";
+    return undefined; // คืนค่า undefined ถ้าไม่พบชา
   };
 
-
-
   useEffect(() => {
-    console.log("=========== input customProduct", dataForApi);
-  }, [dataForApi]);
+    if (dataForApi?.product) {
+      console.log("=========== input customProduct", dataForApi);
+    }
+  }, [dataForApi, dataForApi?.product]); // ตรวจสอบว่ามีค่าก่อนทำงาน
 
   const experSelecctness = [
     {
@@ -407,31 +429,33 @@ const Home = () => {
 
   const experSelecct = [
     {
-      id: 'Refreshing',
-      icon: '🍋',
-      title: 'Refreshing & Acidity',
-      description: 'ความเข้มข้นของชาเบลนด์ ให้ความสดชื่น และกำลังหาสิ่งที่ใช่สำหรับฉัน',
+      id: "Refreshing",
+      icon: "🍋",
+      title: "Refreshing & Acidity",
+      description:
+        "ความเข้มข้นของชาเบลนด์ ให้ความสดชื่น และกำลังหาสิ่งที่ใช่สำหรับฉัน",
     },
     {
-      id: 'Clean',
-      icon: '🍯',
-      title: 'Clean & Sweet',
-      description: 'ชาเบลนด์รสชาติสะอาด หวานละมุนบางๆ',
+      id: "Clean",
+      icon: "🍯",
+      title: "Clean & Sweet",
+      description: "ชาเบลนด์รสชาติสะอาด หวานละมุนบางๆ",
     },
     {
-      id: 'Balanced',
-      icon: '⚖️',
-      title: 'Balanced',
-      description: 'ชาเบลนด์รสชาติกำลังดี ทั้งเปรี้ยว หวาน เข้ม ในแก้วเดียว',
+      id: "Balanced",
+      icon: "⚖️",
+      title: "Balanced",
+      description: "ชาเบลนด์รสชาติกำลังดี ทั้งเปรี้ยว หวาน เข้ม ในแก้วเดียว",
     },
     {
-      id: 'Relax',
-      icon: '🍵',
-      title: 'Relax',
-      description: 'ชาเบลนด์ที่มีกลิ่น หอม ผ่อนคลาย',
+      id: "Relax",
+      icon: "🍵",
+      title: "Relax",
+      description: "ชาเบลนด์ที่มีกลิ่น หอม ผ่อนคลาย",
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [ratings, setRatings] = useState<Ratings>({
     healthy: 0,
     sweetness: 0,
@@ -478,7 +502,12 @@ const Home = () => {
   };
 
   // ฟังก์ชันเพื่อหาชาที่ตรงตามเงื่อนไข
-  function findTea(healthy: number, sweetness: number, body: number, teaRating: TeaRatings): string | undefined {
+  function findTea(
+    healthy: number,
+    sweetness: number,
+    body: number,
+    teaRating: TeaRatings
+  ): string | undefined {
     // ตรวจสอบชาในแต่ละประเภท
     for (const category in teaRating) {
       if (category !== "random") {
@@ -488,7 +517,12 @@ const Home = () => {
         if (Array.isArray(teaList)) {
           // ตรวจสอบว่า tea เป็น Tea หรือไม่
           for (const tea of teaList) {
-            if (isTea(tea) && tea.healthy === healthy && tea.sweetness === sweetness && tea.body === body) {
+            if (
+              isTea(tea) &&
+              tea.healthy === healthy &&
+              tea.sweetness === sweetness &&
+              tea.body === body
+            ) {
               return tea.name; // คืนค่า name ของชา ถ้าเงื่อนไขตรง
             }
           }
@@ -497,8 +531,15 @@ const Home = () => {
     }
 
     // ถ้าไม่พบชาในเงื่อนไขที่ตรง ให้สุ่มชา
-    const randomCategory = ["Green-tea", "Black-tea", "Oolong-tea", "White-tea"];
-    const randomCategoryIndex = Math.floor(Math.random() * randomCategory.length);
+    const randomCategory = [
+      "Green-tea",
+      "Black-tea",
+      "Oolong-tea",
+      "White-tea",
+    ];
+    const randomCategoryIndex = Math.floor(
+      Math.random() * randomCategory.length
+    );
     const randomTeaCategory = randomCategory[randomCategoryIndex];
     const randomTeaList = teaRating[randomTeaCategory as keyof TeaRatings];
 
@@ -520,6 +561,11 @@ const Home = () => {
     return (tea as Tea).healthy !== undefined;
   }
 
+  //แก้ไข 'findTea' is defined but never used. =================================================================================
+  //แก้ไข'findTea' is declared but its value is never read. ====================================================================
+  const result = findTea(5, 2, 4, teaRating);
+  console.log("Selected tea:", result);
+
   return (
     <>
       <div className="flex flex-col justify-center pl-20 bg-fixed bg-cover bg-center min-h-screen min-w-screen">
@@ -539,8 +585,6 @@ const Home = () => {
           >
             เริ่มเลย
           </button>
-
-
         </div>
       </div>
       <Homebanner />
@@ -558,7 +602,6 @@ const Home = () => {
           <div
             // className="bg-gray-100 bg-opacity-90 p-8 rounded-lg shadow-lg max-w-2xl w-full relative"
             className="bg-gray-100 bg-opacity-90 p-8 rounded-lg shadow-lg max-w-2xl w-full relative h-[95vh] overflow-auto"
-
             onClick={(e) => e.stopPropagation()} // ป้องกันการปิด modal เมื่อคลิกภายใน modal
           >
             <h1 className="text-center text-2xl font-bold mb-6">
@@ -656,7 +699,9 @@ const Home = () => {
                       alt="Instant blended tea"
                       className="w-[185px] h-[96.39px] object-cover rounded mb-2"
                     />
-                    <p className="text-center font-medium">Instant blended tea</p>
+                    <p className="text-center font-medium">
+                      Instant blended tea
+                    </p>
                   </div>
                 </a>
               </div>
@@ -824,12 +869,8 @@ const Home = () => {
                     className="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-200 text-left"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">
-                        {experSelecct[0].icon}
-                      </span>
-                      <h3 className="font-semibold">
-                        {experSelecct[0].title}
-                      </h3>
+                      <span className="text-2xl">{experSelecct[0].icon}</span>
+                      <h3 className="font-semibold">{experSelecct[0].title}</h3>
                     </div>
                     <p className="text-sm text-gray-600">
                       {experSelecct[0].description}
@@ -848,12 +889,8 @@ const Home = () => {
                     className="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-200 text-left"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">
-                        {experSelecct[1].icon}
-                      </span>
-                      <h3 className="font-semibold">
-                        {experSelecct[1].title}
-                      </h3>
+                      <span className="text-2xl">{experSelecct[1].icon}</span>
+                      <h3 className="font-semibold">{experSelecct[1].title}</h3>
                     </div>
                     <p className="text-sm text-gray-600">
                       {experSelecct[1].description}
@@ -875,7 +912,6 @@ const Home = () => {
                   <div
                     key={experSelecct[2].id}
                     onClick={() => {
-
                       setDataForApi((prevState) => ({
                         ...prevState,
                         Type: "Balanced", // อัปเดตค่า Type
@@ -883,18 +919,12 @@ const Home = () => {
 
                       const randomTea = getRandomTea(dataForApi, teaData);
                       console.log("123123123123123", randomTea);
-
-
                     }}
                     className="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-200 text-left"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">
-                        {experSelecct[2].icon}
-                      </span>
-                      <h3 className="font-semibold">
-                        {experSelecct[2].title}
-                      </h3>
+                      <span className="text-2xl">{experSelecct[2].icon}</span>
+                      <h3 className="font-semibold">{experSelecct[2].title}</h3>
                     </div>
                     <p className="text-sm text-gray-600">
                       {experSelecct[2].description}
@@ -913,12 +943,8 @@ const Home = () => {
                     className="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-200 text-left"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">
-                        {experSelecct[3].icon}
-                      </span>
-                      <h3 className="font-semibold">
-                        {experSelecct[3].title}
-                      </h3>
+                      <span className="text-2xl">{experSelecct[3].icon}</span>
+                      <h3 className="font-semibold">{experSelecct[3].title}</h3>
                     </div>
                     <p className="text-sm text-gray-600">
                       {experSelecct[3].description}
@@ -951,11 +977,22 @@ const Home = () => {
 
               <div className="grid grid-cols-1 gap-8 mb-12">
                 {[
-                  { label: "สุขภาพ", category: "healthy", translation: "Healthy" },
-                  { label: "ความหวาน", category: "sweetness", translation: "Sweetness" },
+                  {
+                    label: "สุขภาพ",
+                    category: "healthy",
+                    translation: "Healthy",
+                  },
+                  {
+                    label: "ความหวาน",
+                    category: "sweetness",
+                    translation: "Sweetness",
+                  },
                   { label: "ความเข้ม", category: "body", translation: "Body" },
                 ].map(({ label, category, translation }) => (
-                  <div key={category} className="flex items-center justify-between">
+                  <div
+                    key={category}
+                    className="flex items-center justify-between"
+                  >
                     <div className="text-left w-36">
                       <p className="text-lg font-medium">{label}</p>
                       <p className="text-sm text-gray-500">{translation}</p>
@@ -964,20 +1001,15 @@ const Home = () => {
                       {[1, 2, 3].map((value) => (
                         <button
                           key={value}
-                          className={`w-12 h-12 text-3xl flex justify-center items-center rounded-full ${ratings[category as keyof Ratings] >= value
+                          className={`w-12 h-12 text-3xl flex justify-center items-center rounded-full ${tempRatings[category as keyof Ratings] >= value
                             ? "bg-yellow-400 text-white"
                             : "bg-gray-200 text-gray-400"
                             } hover:bg-yellow-500 hover:scale-105 transition-transform duration-200`}
                           onClick={() => {
-                            // เรียก handleRating
-                            handleRating(category as keyof Ratings, value);
-
-                            // เรียก getTeaBySelection
-                            const teatype2 = getTeaBySelection(dataForApi.selection, dataForApi.Type2, teaRating);
-                            console.log("Selected Tea Type:", teatype2);
-
-                            // ทำงานเพิ่มเติม เช่น แสดงผลหรือเก็บค่าใน state
-                            alert(`You selected ${teatype2}`);
+                            setTempRatings((prevRatings) => ({
+                              ...prevRatings,
+                              [category]: value,
+                            }));
                           }}
                         >
                           {value}
@@ -991,21 +1023,37 @@ const Home = () => {
               <div className="flex justify-center gap-8">
                 <button
                   onClick={() => {
-                    setModalRatings(false);
-                    setModalProduct(true);
+                    handleRating("healthy", tempRatings.healthy);
+                    handleRating("sweetness", tempRatings.sweetness);
+                    handleRating("body", tempRatings.body);
+
+                    const selectedTea = getTeaBySelection(
+                      dataForApi.selection,
+                      dataForApi.Type2,
+                      teaRating
+                    );
+
                     setDataForApi((prevState) => ({
                       ...prevState,
-                      Type: "", // รอเก็บค่า
+                      product: selectedTea || "", // เก็บผลลัพธ์ใน product
                     }));
+
+                    setCustomProduct({
+                      img: getImageBySelection(dataForApi.selection),
+                      teaName: selectedTea || "",
+                    });
+
+                    setModalRatings(false);
+                    setModalProduct(true);
                   }}
-                  className="px-6 py-3 bg-gray-800 text-white rounded-md text-lg font-semibold hover:bg-gray-700 hover:scale-105 transition-transform duration-200">
+                  className="px-6 py-3 bg-gray-800 text-white rounded-md text-lg font-semibold hover:bg-gray-700 hover:scale-105 transition-transform duration-200"
+                >
                   ถัดไป
                 </button>
               </div>
             </div>
-
           </div>
-        </div >
+        </div>
       )}
 
       {/* modalProduct*/}
@@ -1018,44 +1066,59 @@ const Home = () => {
           }}
         >
           <div
-            className="bg-gray-100 bg-opacity-90 p-8 rounded-lg shadow-lg max-w-2xl w-full relative"
+            className="bg-white p-8 rounded-xl shadow-xl max-w-3xl w-full relative"
             onClick={(e) => e.stopPropagation()} // ป้องกันการปิด modal เมื่อคลิกภายใน modal
           >
-            <h1 className="text-center text-2xl font-bold mb-6">ชาเบลนด์ ที่มี taste note เฉพาะคุณ</h1>
-            <p className="text-center mb-4">1 กล่อง บรรจุวัตถุดิบชาเบลนด์ 40 g.</p>
-            <div className="flex justify-around text-center mb-6">
-              <div>
-                <img src={productboxAi} alt="Product Box" />
-                <p className="text-red-700">👍95% พึงพอใจกาแฟที่เราแนะนำ</p>
-              </div>
-              <div className="flex">
-                {/* <SolutionAi name="ชาขาว" image={arrowleft} /> */}
+            <h1 className="text-center text-3xl font-bold mb-6 text-gray-800">
+              ชาเบลนด์ ที่มี taste note เฉพาะคุณ
+            </h1>
+            <p className="text-center text-lg text-gray-600 mb-6">
+              1 กล่อง บรรจุวัตถุดิบชาเบลนด์ 40 g.
+            </p>
 
-                <div className="bg-slate-500">
-                  <div>
-                    <img src={customProduct.img}></img>
-                  </div>
-                  <div>
-                    <h3>{customProduct.teaName}</h3>
-                  </div>
-                </div>
+            <div className="flex justify-around items-center mb-8">
+              {/* กล่องสินค้า */}
+              <div className="text-center">
+                <img src={productboxAi} alt="Product Box" className="w-64 h-auto mb-4" />
+                <p className="text-red-700 font-medium">👍 95% พึงพอใจกาแฟที่เราแนะนำ</p>
+              </div>
+
+              {/* ชาที่เลือก */}
+              <div className="bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center">
+                {customProduct?.img && (
+                  <img
+                    src={customProduct.img}
+                    alt="Selected Tea"
+                    className="w-40 h-40 object-cover mb-4"
+                  />
+                )}
+                <h3 className="text-xl font-bold text-gray-800">
+                  {customProduct?.teaName || "ไม่พบข้อมูลชา"}
+                </h3>
               </div>
             </div>
 
-            <div className="flex justify-around items-center text-center">
-              <p>ใช้ระบบวิเคราะห์ที่ทันสมัยและแม่นยำเพื่อให้ตรงใจคุณ</p>
-              <div>
-                <p>จัดส่งฟรี! ทุกออเดอร์</p>
-                <button className="bg-slate-500 px-4 py-2 rounded-lg">
-                  <p>เพิ่มไปยังตะกร้า $ 300.00</p>
+            <div className="flex justify-between items-center text-center text-gray-600">
+              {/* ข้อความอธิบาย */}
+              <p className="text-sm max-w-sm">
+                ใช้ระบบวิเคราะห์ที่ทันสมัยและแม่นยำเพื่อให้ตรงใจคุณ
+              </p>
+
+              {/* ปุ่มและข้อมูลการจัดส่ง */}
+              <div className="text-center">
+                <p className="text-green-600 font-medium mb-2">จัดส่งฟรี! ทุกออเดอร์</p>
+                <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-200">
+                  เพิ่มไปยังตะกร้า $300.00
                 </button>
-                <p>🤟 พร้อมจัดส่งกล่องใหม่ฟรี!! หากไม่พึงพอใจ</p>
+                <p className="text-sm text-gray-500 mt-2">
+                  🤟 พร้อมจัดส่งกล่องใหม่ฟรี!! หากไม่พึงพอใจ
+                </p>
               </div>
             </div>
-
           </div>
-        </div >
+        </div>
       )}
+
     </>
   );
 };
