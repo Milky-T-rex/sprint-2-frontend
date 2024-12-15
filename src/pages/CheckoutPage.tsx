@@ -271,10 +271,10 @@ const Checkout: React.FC = () => {
             </li>
           ))}
         </ul>
-        <h4 className="text-lg font-bold text-gray-900">Subtotal: ${subtotal.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Shipping: ${shipping.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Tax: ${tax.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Total: ${total.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">Subtotal: {subtotal.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">Shipping: {shipping.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">Tax: {tax.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">Total: {total.toFixed(2)}</h4>
       </div>
     </div>
   );

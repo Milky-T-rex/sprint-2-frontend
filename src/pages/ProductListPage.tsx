@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
 
 interface Product {
+  id: string;
   _id: string; // Ensure this maps to _id in the API
   name: string;
   weight: string;
@@ -27,7 +28,7 @@ const ProductListPage: React.FC = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch("https://project-backend-pawt.onrender.com");
+        const response = await fetch("https://project-backend-pawt.onrender.com/api/product");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -101,11 +102,11 @@ const ProductListPage: React.FC = () => {
               <div className="grid grid-cols-4 gap-4">
                 {filteredProducts.map((product) => (
                   <Link
-                    to={`/products/${product._id}`} // Corrected frontend route
-                    key={product._id}
+                    to={`/products/${product.id}`} // Corrected frontend route
+                    key={product.id}
                   >
                     <ProductCard
-                      id={product._id}
+                      id={product.id}
                       name={product.name}
                       weight={product.weight}
                       price={product.price}
