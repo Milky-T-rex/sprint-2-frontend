@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { useCart } from "../context/CartContext";
 interface OrderSummaryItem {
   product: string;
   quantity: number;
@@ -10,6 +10,11 @@ interface OrderSummaryItem {
 const Checkout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const {clearCart} = useCart();
+
+  const handleClearCart = () => {
+    clearCart();
+  };
 
   const { orderSummary, subtotal, shipping, tax, total } = location.state as {
     orderSummary: OrderSummaryItem[];
@@ -79,6 +84,8 @@ const Checkout: React.FC = () => {
       },
     });
   };
+
+  
 
   return (
     <div className="flex justify-between flex-wrap p-6 bg-gray-50">
@@ -251,6 +258,7 @@ const Checkout: React.FC = () => {
         <button
           type="submit"
           className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+          onClick={handleClearCart}
         >
           Place Order
         </button>
