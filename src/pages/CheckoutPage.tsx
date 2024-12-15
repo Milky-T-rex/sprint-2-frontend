@@ -10,7 +10,7 @@ interface OrderSummaryItem {
 const Checkout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {clearCart} = useCart();
+  const { clearCart } = useCart();
 
   const handleClearCart = () => {
     clearCart();
@@ -33,6 +33,8 @@ const Checkout: React.FC = () => {
     shippingAddress: "",
     paymentMethod: "card",
     sameAsBilling: true,
+    cardNumber: "",
+    cvv: "",
   });
 
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
@@ -84,8 +86,6 @@ const Checkout: React.FC = () => {
       },
     });
   };
-
-  
 
   return (
     <div className="flex justify-between flex-wrap p-6 bg-gray-50">
@@ -193,6 +193,29 @@ const Checkout: React.FC = () => {
               Credit/Debit Card
             </label>
           </div>
+          {formData.paymentMethod === "card" && (
+            <div className="mb-4">
+              <input
+                type="text"
+                name="cardNumber"
+                placeholder="Card Number"
+                value={formData.cardNumber}
+                onChange={handleChange}
+                required
+                className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+              />
+              <input
+                type="text"
+                name="cvv"
+                placeholder="CVV"
+                value={formData.cvv}
+                onChange={handleChange}
+                required
+                maxLength={3}
+                className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+              />
+            </div>
+          )}
           <div className="flex items-center mb-4">
             <input
               type="radio"
@@ -279,10 +302,16 @@ const Checkout: React.FC = () => {
             </li>
           ))}
         </ul>
-        <h4 className="text-lg font-bold text-gray-900">Subtotal: ${subtotal.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Shipping: ${shipping.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Tax: ${tax.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Total: ${total.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Subtotal: {subtotal.toFixed(2)}
+        </h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Shipping: {shipping.toFixed(2)}
+        </h4>
+        <h4 className="text-lg font-bold text-gray-900">Tax: {tax.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Total: {total.toFixed(2)}
+        </h4>
       </div>
     </div>
   );

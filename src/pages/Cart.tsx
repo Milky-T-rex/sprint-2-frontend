@@ -35,8 +35,8 @@ const Cart: React.FC = () => {
 
   const handleCheckout = () => {
     const subtotal = calculateSubtotal();
-    const shipping = 5.99;
-    const tax = 6.40;
+    const shipping = 35;
+    const tax = 0;
     const total = subtotal + shipping + tax;
 
     // Pass detailed information to Checkout page
