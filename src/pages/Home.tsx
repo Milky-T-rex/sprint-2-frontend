@@ -3,6 +3,7 @@ import Homebanner from "../components/Homebanner";
 import Blog from "../components/Blog";
 import Bgcover from "../assets/Backgroundcover.svg";
 
+
 interface DataForApi {
   selection: string;
   level: string;

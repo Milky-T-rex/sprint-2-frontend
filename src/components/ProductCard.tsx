@@ -4,11 +4,12 @@ import rainbow from '../assets/rainbow.jpg'
 import { Link } from 'react-router-dom';
 
 type ProductCardProps = {
-  id: number;
+  id: string;
   name: string;
   weight: string;
-  price: string;
+  price: number;
   imageUrl: string;
+  category: string;
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ 
