@@ -26,7 +26,7 @@ const ProductDetailPage: React.FC = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch(`http://localhost:8000/api/product/${id}`);
+        const response = await fetch(`https://project-backend-pawt.onrender.com/api/product/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -72,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
   const handleProductClick = () => navigate("/products");
 
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto p-10 content-center">
       {/* Back Button */}
       {/* <button 
         onClick={handleBackClick} 
@@ -89,7 +89,9 @@ const ProductDetailPage: React.FC = () => {
       </nav>
 
       {/* Shop Choice */}
-      <ShopChoice product={product} />
+      <div className='flex justify-center items-center'>
+        <ShopChoice product={product} />
+      </div>
     </div>
   );
 };

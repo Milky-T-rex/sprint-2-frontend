@@ -5,7 +5,8 @@ import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
 
 interface Product {
-  id: string; // Ensure this maps to _id in the API
+  id: string;
+  _id: string; // Ensure this maps to _id in the API
   name: string;
   weight: string;
   price: number;
@@ -27,18 +28,18 @@ const ProductListPage: React.FC = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch("http://localhost:8000/api/product");
+        const response = await fetch("https://project-backend-pawt.onrender.com/api/product");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
         // Map API response `_id` to `id` for consistency
-        const mappedData = data.map((product: any) => ({
+        const mappedData = data.map((product: Product) => ({
           id: product._id,
           name: product.name,
           weight: product.weight || "",
           price: product.price || 0,
-          imageUrl: product.image || "",
+          imageUrl: product.imageUrl || "",
           category: product.category || "",
         }));
         setProducts(mappedData);

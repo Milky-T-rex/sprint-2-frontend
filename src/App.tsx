@@ -4,7 +4,6 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import CartButton from "./components/CartButton";
 
 // Pages
@@ -55,7 +54,6 @@ const App: React.FC = () => {
             <Route path="/order-complete" element={<OrderCompletePage />} /> {/* New route for the complete order page */}
           </Routes>
         </div>
-        <Footer />
       </Router>
     </CartProvider>
   );

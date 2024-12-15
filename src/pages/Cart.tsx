@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useCart } from "../context/CartContext";
+import rainbow from "../assets/rainbow.jpg"
 
 const Cart: React.FC = () => {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
@@ -34,8 +35,8 @@ const Cart: React.FC = () => {
 
   const handleCheckout = () => {
     const subtotal = calculateSubtotal();
-    const shipping = 5.99;
-    const tax = 6.40;
+    const shipping = 35;
+    const tax = 0;
     const total = subtotal + shipping + tax;
 
     // Pass detailed information to Checkout page
@@ -61,7 +62,7 @@ const Cart: React.FC = () => {
             {cartItems.map((item) => (
               <li key={item.id} className="flex justify-between items-center mb-6 p-4 border-b">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gray-200"></div> {/* Placeholder for image */}
+                  <div className="w-16 h-16"><img src={rainbow}/></div> {/* Placeholder for image */}
                   <div>
                     <p className="text-lg font-medium">{item.name}</p>
                     <p className="text-gray-600">${item.price.toFixed(2)}</p>
@@ -104,10 +105,10 @@ const Cart: React.FC = () => {
       <div className="w-1/4 bg-white p-6 border-l">
         <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
         <div className="space-y-4">
-          <p>Subtotal: ${calculateSubtotal().toFixed(2)}</p>
-          <p>Shipping: $5.99</p>
-          <p>Tax: $6.40</p>
-          <p className="font-bold">Total: ${(calculateSubtotal() + 5.99 + 6.40).toFixed(2)}</p>
+          <p>Subtotal: {calculateSubtotal().toFixed(2)}</p>
+          <p>Shipping: 35</p>
+          <p>Tax: 0</p>
+          <p className="font-bold">Total: ${(calculateSubtotal() + 35).toFixed(2)}</p>
         </div>
         <div className="mt-6 space-y-4">
           <button
