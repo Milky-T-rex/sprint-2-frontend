@@ -4,7 +4,6 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import CartButton from "./components/CartButton";
 
 // Pages
