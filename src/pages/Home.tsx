@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Homebanner from "../components/Homebanner";
 import Blog from "../components/Blog";
 import Bgcover from "../assets/Backgroundcover.svg";
+import Footer from "../components/Footer";
 // import SolutionAi from "../components/SolutionAi";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
@@ -1104,12 +1105,9 @@ const Home = () => {
           </div>
         </div>
       )}
-
-    </>
-  );
-      <Footer />
+    <Footer />
     </div>
-  )
+  );
 };
 
 export default Home;
