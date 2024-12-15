@@ -1,28 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Box, Button } from "@mui/material";
 
 // Define the types for the images and cards
-const images: string[] = [
-  'https://via.placeholder.com/800x300?text=Slide+1',
-  'https://via.placeholder.com/800x300?text=Slide+2',
-  'https://via.placeholder.com/800x300?text=Slide+3',
-];
+
 
 interface Card {
+  id: number;
   title: string;
+  content: string;
   img: string;
 }
 
 const cards: Card[] = [
-  { title: "Degas ความลับที่ทำให้กาแฟของคุณอร่อยขึ้น", img: 'https://via.placeholder.com/300x200' },
-  { title: "อีกหนึ่งเกร็ดความรู้ที่คุณต้องลอง", img: 'https://via.placeholder.com/300x200' },
-  { title: "อยากให้กาแฟหอมขึ้น? ลองวิธีนี้!", img: 'https://via.placeholder.com/300x200' },
+  { id:0,title: "ศิลปะและความพิถีพิถันในกระบวนการผลิตชา", content: '1',img: 'https://via.placeholder.com/300x200' },
+  { id:1,title: "ประวัติและวัฒนธรรมการดื่มชาในประเทศญี่ปุ่น",  content: '2' ,img: 'https://via.placeholder.com/300x200' },
+  { id:2,title: "วิธีการชงชาให้อร่อย: เคล็ดลับจากผู้เชี่ยวชาญ",   content: '3' ,img: 'https://via.placeholder.com/300x200' },
 ];
+
+// สร้าง array ของ images โดยใช้ map
+const images: string[] = cards.map(card => card.img);
+
+// Create a context for sharing data
+export const BlogContext = createContext({
+  images, // ใช้ array ของ images ที่สร้างขึ้น
+  cards,
+});
+const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <BlogContext.Provider value={{ images, cards }}>
+      {children}
+    </BlogContext.Provider>
+  );
+};
 
 const BlogPage: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const navigate = useNavigate(); // ต้องอยู่ภายในคอมโพเนนต์
+  const navigate = useNavigate();
+  const { images, cards } = useContext(BlogContext);
 
   const handleReadMore = (id: number) => {
     navigate(`/article/${id}`); // ไปที่หน้าบทความพร้อมกับ ID
@@ -134,7 +149,7 @@ const BlogPage: React.FC = () => {
         {/* Card Section */}
         <Box className="flex flex-col items-center md:flex-row justify-center gap-5 mt-10">
           {cards.map((card, index) => (
-            <div key={index} className="w-full sm:w-[380px] md:w-[300px] lg:w-[320px] xl:w-[350px] flex flex-col rounded-3xl bg-slate-200 border-2 border-black">
+            <div key={index} className="w-full sm:w-[380px] md:w-[300px] lg:w-[320px] xl:w-[350px] flex flex-col rounded-3xl bg-slate-200 border-2 min-h-[400px] max-h-[400px]">
               <img
                 src={card.img}
                 className="w-full h-48 object-cover rounded-t-3xl border-2 border-b-black"

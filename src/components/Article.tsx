@@ -1,21 +1,38 @@
-import { useParams } from "react-router-dom";
-
-const articles = [
-  { id: 0, title: "Degas ความลับที่ทำให้กาแฟของคุณอร่อยขึ้น", content: "เนื้อหาเต็มของบทความ 1...", img: 'https://via.placeholder.com/300x200' },
-  { id: 1, title: "อีกหนึ่งเกร็ดความรู้ที่คุณต้องลอง", content: "เนื้อหาเต็มของบทความ 2...", img: 'https://via.placeholder.com/300x200' },
-  { id: 2, title: "อยากให้กาแฟหอมขึ้น? ลองวิธีนี้!", content: "เนื้อหาเต็มของบทความ 3...", img: 'https://via.placeholder.com/300x200' },
-];
+import React, { useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { BlogContext } from "../pages/BlogPage"; 
 
 const Article: React.FC = () => {
-  const { id } = useParams<{ id: string }>();  // ดึงค่า id จาก URL
-  const article = articles[parseInt(id || '0')];  // แปลง id เป็นหมายเลขแล้วหาบทความที่ตรงกัน
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate(); // สำหรับการนำทาง
+  const { cards: articles } = useContext(BlogContext); // ดึงข้อมูล cards จาก Context
+  const article = articles[parseInt(id || '0')];
+
+  if (!article) {
+    return (
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-10">
+        <h1 className="text-4xl font-semibold text-center text-gray-900">ไม่พบบทความ</h1>
+        <button
+          onClick={() => navigate(-1)}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          กลับ
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-10">
       <h1 className="text-4xl font-semibold text-center text-gray-900">{article.title}</h1>  
       <img src={article.img} alt={article.title} className="mt-6 w-full h-64 object-cover rounded-lg" />
       <p className="mt-4 text-lg text-gray-700">{article.content}</p>
-    
+      <button
+        onClick={() => navigate(-1)}
+        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        กลับ
+      </button>
     </div>
   );
 };
