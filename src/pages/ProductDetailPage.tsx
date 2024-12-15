@@ -72,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
   const handleProductClick = () => navigate("/products");
 
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto p-10 content-center">
       {/* Back Button */}
       {/* <button 
         onClick={handleBackClick} 
@@ -89,7 +89,9 @@ const ProductDetailPage: React.FC = () => {
       </nav>
 
       {/* Shop Choice */}
-      <ShopChoice product={product} />
+      <div className='flex justify-center content-center'>
+        <ShopChoice product={product} />
+      </div>
     </div>
   );
 };
