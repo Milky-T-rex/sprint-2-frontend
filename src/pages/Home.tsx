@@ -6,10 +6,10 @@ import Bgcover from "../assets/Backgroundcover.svg";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
 // import CustomProduct from "./CustomProduct";
-import greenTea from "../assets/Green-tea-powder.jpg";
-import blackTea from "../assets/Black-tea.jpg";
-import oolongTea from "../assets/Oolong-tea.jpg";
-import whiteTea from "../assets/White-tea.jpg";
+import greenTea from "../assets/greenTea-p.jpg";
+import blackTea from "../assets/blackTea-p.jpg";
+import oolongTea from "../assets/oolongTea-p.jpg";
+import whiteTea from "../assets/whiteTea-p.jpg";
 
 
 interface DataForApi {
@@ -856,7 +856,6 @@ const Home = () => {
               <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">ลักษณะชา</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  {/* ==============================================================================*/}
                   <div
                     key={experSelecct[0].id}
                     onClick={() => {
@@ -897,19 +896,6 @@ const Home = () => {
                       {experSelecct[1].description}
                     </p>
                   </div>
-                  {/* <div
-                    key={experSelecct[2].id}
-                    onClick={() => {
-                      setModalType(false);
-                      setModalProduct(true);
-                      setDataForApi((prevState) => ({
-                        ...prevState,
-                        Type: "Balanced", // อัปเดตค่า Type
-                      }));
-                    }}
-                    className="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-200 text-left"
-                  > */}
-
                   <div
                     key={experSelecct[2].id}
                     onClick={() => {
