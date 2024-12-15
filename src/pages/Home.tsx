@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Homebanner from "../components/Homebanner";
 import Blog from "../components/Blog";
 import Bgcover from "../assets/Backgroundcover.svg";
+import Footer from "../components/Footer";
 // import SolutionAi from "../components/SolutionAi";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
@@ -568,7 +569,7 @@ const Home = () => {
   console.log("Selected tea:", result);
 
   return (
-    <>
+    <div>
       <div className="flex flex-col justify-center pl-20 bg-fixed bg-cover bg-center min-h-screen min-w-screen">
         <img
           src={Bgcover}
@@ -1104,8 +1105,8 @@ const Home = () => {
           </div>
         </div>
       )}
-
-    </>
+    <Footer />
+    </div>
   );
 };
 
