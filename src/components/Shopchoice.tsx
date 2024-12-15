@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext"; // Import useCart
-
-interface Product {
+import rainbow from "../assets/rainbow.jpg";
+type Product = {
   id: string;
   name: string;
   price: number;
@@ -30,7 +30,7 @@ const ShopChoice: React.FC<ShopChoiceProps> = ({ product }) => {
     <div className="flex flex-row justify-center">
       <div className="border-2 w-[300px]">
         <img
-          src={product.imageUrl}
+          src={rainbow || product.imageUrl}
           alt={product.name}
           className="w-full h-auto"
         />
