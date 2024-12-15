@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ShopChoice from '../components/ShopChoice';
+import ShopChoice from '../components/Shopchoice';
 
 interface Product {
   id: string;
