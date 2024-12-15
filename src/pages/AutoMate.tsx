@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
 
+// ไม่ใช้ props
+// interface AutoMateProps{
+//   onLogin: (credentials: { email: string; password: string }) => void;
+//   onSignUp: (userData: { username: string; email: string; password: string }) => void;
+// }
+
 const AutoMate: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -13,8 +19,8 @@ const AutoMate: React.FC = () => {
     <div className="auth-container">
       <div className="auth-header">
         <h2>{isLogin ? "Login to Milky Tea-rex" : "Sign up for Milky Tea-rex"}</h2>
-        <button 
-          onClick={handleToggle} 
+        <button
+          onClick={handleToggle}
           className="toggle-button"
         >
           {isLogin ? "Switch to Sign Up" : "Switch to Login"}
