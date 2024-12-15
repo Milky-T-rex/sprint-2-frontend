@@ -10,7 +10,7 @@ const Homebanner = () => {
       <div className="w-full h-full flex flex-col gap-2.5 md:w-2/3  space-y-2.5 ">
         <div className="grid grid-cols-2 gap-5 h-full">
           {/* Box 1 */}
-          <div className="h-full bg-green-300   p-4 pr-0 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300 ">
+          <div className="h-full bg-[#697565]   p-4 pr-0 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300 ">
             <p className="text-white font-semibold">ชิมชาใน ขนาดทดลอง 40 ก.</p>
             <img
               src={greenTea}
