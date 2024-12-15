@@ -19,7 +19,7 @@ const Homebanner = () => {
             />
           </div>
           {/* Box 2 */}
-          <div className=" h-full bg-[#A9A454]   p-4 pr-0 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300">
+          <div className=" h-full bg-[#556B2F]   p-4 pr-0 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300">
             <p className="text-white font-semibold">
               คัดสรรชาใหม่ๆ ให้คุณชิมไม่มีเบื่อ
             </p>
@@ -31,14 +31,14 @@ const Homebanner = () => {
           </div>
         </div>
         {/* Bottom Row */}
-        <div className=" h-full bg-[#12390e] flex-1  p-4 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300">
+        <div className=" h-full bg-[#556B2F] flex-1  p-4 pb-0 flex flex-col justify-between shadow-md hover:scale-110 transition duration-300">
           <p className="text-white font-semibold">4 โรงอบในกล่องเดียว</p>
           <img src={tea} className="ml-auto mt-auto" alt="4 tea packages" />
         </div>
       </div>
 
       {/* Right Section */}
-      <div className="flex flex-col  w-full h-auto md:w-1/3  bg-[#05450a] pl-4 pt-4  justify-between shadow-md  hover:scale-110 transition duration-300">
+      <div className="flex flex-col  w-full h-auto md:w-1/3  bg-[#556B2F] pl-4 pt-4  justify-between shadow-md  hover:scale-110 transition duration-300">
         <p className="text-white font-semibold">
           แนะนำชาให้ คุณโดยเฉพาะ ใน 1 นาที
         </p>
