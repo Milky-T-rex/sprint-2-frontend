@@ -998,28 +998,27 @@ const Home = () => {
                       <p className="text-sm text-gray-500">{translation}</p>
                     </div>
                     <div className="flex space-x-4">
-                      {[1, 2, 3].map((value) => (
+                      {Array.from({ length: 3 }).map((_, index) => (
                         <button
-                          key={value}
-                          className={`w-12 h-12 text-3xl flex justify-center items-center rounded-full ${tempRatings[category as keyof Ratings] >= value
-                            ? "bg-yellow-400 text-white"
-                            : "bg-gray-200 text-gray-400"
+                          key={index}
+                          className={`w-12 h-12 text-3xl flex justify-center items-center rounded-full ${tempRatings[category as keyof Ratings] > index
+                              ? "bg-yellow-400 text-white"
+                              : "bg-gray-200 text-gray-400"
                             } hover:bg-yellow-500 hover:scale-105 transition-transform duration-200`}
                           onClick={() => {
                             setTempRatings((prevRatings) => ({
                               ...prevRatings,
-                              [category]: value,
+                              [category]: index + 1, // ให้ดาวเริ่มจาก 1
                             }));
                           }}
                         >
-                          {value}
+                          ✰
                         </button>
                       ))}
                     </div>
                   </div>
                 ))}
               </div>
-              {/* ==============================================================================*/}
               <div className="flex justify-center gap-8">
                 <button
                   onClick={() => {
