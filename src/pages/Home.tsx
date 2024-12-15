@@ -6,7 +6,7 @@ import Bgcover from "../assets/Backgroundcover.svg";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
 // import CustomProduct from "./CustomProduct";
-import greenTea from "../assets/greenTea-p.jpg";
+import greenTea from "../assets/greenTea-p.jpg"
 import blackTea from "../assets/blackTea-p.jpg";
 import oolongTea from "../assets/oolongTea-p.jpg";
 import whiteTea from "../assets/whiteTea-p.jpg";
@@ -314,6 +314,13 @@ const Home = () => {
       default:
         return "";
     }
+  };
+
+  const handleTeaSelection = (teaType: string) => {
+    setCustomProduct({
+      img: getImageBySelection(teaType),  // ตั้งค่ารูปภาพตามประเภทชา
+      teaName: teaType,  // ตั้งชื่อชา
+    });
   };
 
   function getRandomTea(dataForApi: DataForApi, teaData: TeaCategory[]) {
@@ -859,6 +866,7 @@ const Home = () => {
                   <div
                     key={experSelecct[0].id}
                     onClick={() => {
+                      handleTeaSelection("Green-tea");  // อัปเดตรูปและชื่อชา
                       setModalType(false);
                       setModalProduct(true);
                       setDataForApi((prevState) => ({
@@ -879,6 +887,7 @@ const Home = () => {
                   <div
                     key={experSelecct[1].id}
                     onClick={() => {
+                      handleTeaSelection("Black-tea");  // อัปเดตรูปและชื่อชา
                       setModalType(false);
                       setModalProduct(true);
                       setDataForApi((prevState) => ({
@@ -899,6 +908,9 @@ const Home = () => {
                   <div
                     key={experSelecct[2].id}
                     onClick={() => {
+                      handleTeaSelection("Oolong-tea");  // อัปเดตรูปและชื่อชา
+                      setModalType(false);
+                      setModalProduct(true);
                       setDataForApi((prevState) => ({
                         ...prevState,
                         Type: "Balanced", // อัปเดตค่า Type
@@ -920,6 +932,7 @@ const Home = () => {
                   <div
                     key={experSelecct[3].id}
                     onClick={() => {
+                      handleTeaSelection("White-tea");  // อัปเดตรูปและชื่อชา
                       setModalType(false);
                       setModalProduct(true);
                       setDataForApi((prevState) => ({
@@ -989,8 +1002,8 @@ const Home = () => {
                         <button
                           key={index}
                           className={`w-12 h-12 text-3xl flex justify-center items-center rounded-full ${tempRatings[category as keyof Ratings] > index
-                              ? "bg-yellow-400 text-white"
-                              : "bg-gray-200 text-gray-400"
+                            ? "bg-yellow-400 text-white"
+                            : "bg-gray-200 text-gray-400"
                             } hover:bg-yellow-500 hover:scale-105 transition-transform duration-200`}
                           onClick={() => {
                             setTempRatings((prevRatings) => ({
