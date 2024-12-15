@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useCart } from "../context/CartContext";
+import rainbow from "../assets/rainbow.jpg"
 
 const Cart: React.FC = () => {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
@@ -61,7 +62,7 @@ const Cart: React.FC = () => {
             {cartItems.map((item) => (
               <li key={item.id} className="flex justify-between items-center mb-6 p-4 border-b">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gray-200"></div> {/* Placeholder for image */}
+                  <div className="w-16 h-16"><img src={rainbow}/></div> {/* Placeholder for image */}
                   <div>
                     <p className="text-lg font-medium">{item.name}</p>
                     <p className="text-gray-600">${item.price.toFixed(2)}</p>
