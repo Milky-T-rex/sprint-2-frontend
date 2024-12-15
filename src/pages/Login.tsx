@@ -86,8 +86,6 @@ const Login: React.FC = () => {
     }
   };
 
-
-
   return (
     <>
       {!loading ? (
@@ -131,7 +129,6 @@ const Login: React.FC = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                     {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
-                    {/* ==================================================================== */}
                     <div className="flex items-center w-full">
                       <input type="checkbox" className="mr-2" />
                       <p className="text-sm text-gray-600">
