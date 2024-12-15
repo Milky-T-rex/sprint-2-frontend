@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Shopchoice from "../components/Shopchoice";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import ShopChoice from '../components/Shopchoice';
 
 interface Product {
   id: string;
@@ -67,66 +67,29 @@ const ProductDetailPage: React.FC = () => {
     return <div>Product Not Found</div>;
   }
 
+  // Navigate back to the previous page
+  const handleHomeClick = () => navigate("/");
+  const handleProductClick = () => navigate("/products");
+
   return (
-    <div className="container mx-auto p-4">
-      <button
-        onClick={() => navigate(-1)}
+    <div className="container mx-auto p-10">
+      {/* Back Button */}
+      {/* <button 
+        onClick={handleBackClick} 
         className="mb-4 text-blue-500 hover:underline"
       >
         ← Back to Products
-      </button>
+      </button> */}
 
-      <ul className="flex gap-3 ml-40 pb-10">
-        <li>Home &gt;</li>
-        <li>Product &gt;</li>
-        <li>{product.name}</li>
-      </ul>
+      {/* Breadcrumb */}
+      <nav className="flex gap-2 text-gray-600 text-sm mb-8">
+        <button onClick={handleHomeClick} >Home &gt;</button>
+        <button onClick={handleProductClick} >Products &gt;</button>
+        <span className="font-semibold text-gray-800">{product.name}</span>
+      </nav>
 
-      <Shopchoice product={product} />
-
-      <div className="flex flex-row justify-center mt-20 pb-20">
-        <section className="flex flex-col border-4 px-10 py-10 mr-6 w-1/5">
-          <div className="flex justify-center mb-4">
-            <img
-              src="https://koph.co/img/icons/cocoa.svg"
-              className="w-16 h-16"
-              alt="Taste Note"
-            />
-          </div>
-          <div>
-            <h1 className="text-center font-bold text-xl">Cocoa & Nutty</h1>
-            <h2 className="text-center">Taste Note</h2>
-          </div>
-        </section>
-
-        <section className="flex flex-col border-4 px-10 py-10 mr-6 w-1/5">
-          <div className="flex justify-center mb-4">
-            <img
-              src="https://koph.co/img/icons/medium-scale.svg"
-              className="w-16 h-16"
-              alt="Roast Level"
-            />
-          </div>
-          <div>
-            <h1 className="text-center font-bold text-xl">Medium</h1>
-            <h2 className="text-center">Roast Level</h2>
-          </div>
-        </section>
-
-        <section className="flex flex-col border-4 px-10 py-10 mr-6 w-1/5">
-          <div className="flex justify-center mb-4">
-            <img
-              src="https://koph.co/img/icons/house-blend.svg"
-              className="w-16 h-16"
-              alt="Mixed Origin"
-            />
-          </div>
-          <div>
-            <h1 className="text-center font-bold text-xl">House Blend</h1>
-            <h2 className="text-center">Mixed Origin</h2>
-          </div>
-        </section>
-      </div>
+      {/* Shop Choice */}
+      <ShopChoice product={product} />
     </div>
   );
 };

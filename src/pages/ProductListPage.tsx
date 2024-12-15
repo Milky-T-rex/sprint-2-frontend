@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
@@ -18,6 +19,7 @@ const ProductListPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate()
 
   // Fetch products from the API
   useEffect(() => {
@@ -69,44 +71,54 @@ const ProductListPage: React.FC = () => {
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return (
-    <div className="flex pt-24">
-      <Sidebar
-        onCategoryChange={handleCategoryChange}
-        onSearch={handleSearch}
-      />
-      <main className="w-3/4 p-4">
-        {loading ? (
-          <p>กำลังโหลดสินค้า...</p>
-        ) : error ? (
-          <p className="text-red-500">เกิดข้อผิดพลาด: {error}</p>
-        ) : (
-          <>
-            <h1 className="mb-4 text-xl font-bold">
-              {filteredProducts.length} รายการในหมวดหมู่:{" "}
-              {searchQuery ? searchQuery : selectedCategory}
-            </h1>
+    // Navigate back to the previous page
+    const handleHomeClick = () => navigate("/");
+    const handleProductClick = () => navigate("/products");
 
-            <div className="grid grid-cols-4 gap-4">
-              {filteredProducts.map((product) => (
-                <Link
-                  to={`/products/${product.id}`} // Corrected frontend route
-                  key={product.id}
-                >
-                  <ProductCard
-                    id={product.id}
-                    name={product.name}
-                    weight={product.weight}
-                    price={product.price}
-                    imageUrl={product.imageUrl}
-                    category={product.category}
-                  />
-                </Link>
-              ))}
-            </div>
-          </>
-        )}
-      </main>
+  return (
+    <div className="mx-auto p-10">
+      <nav className="flex gap-2 text-gray-600 text-sm">
+          <button onClick={handleHomeClick} >Home &gt;</button>
+          <button onClick={handleProductClick} >Products &gt;</button>
+        </nav>
+      <div className="flex">
+        <Sidebar
+          onCategoryChange={handleCategoryChange}
+          onSearch={handleSearch}
+        />
+        <main className="w-3/4 p-4">
+          {loading ? (
+            <p>กำลังโหลดสินค้า...</p>
+          ) : error ? (
+            <p className="text-red-500">เกิดข้อผิดพลาด: {error}</p>
+          ) : (
+            <>
+              <h1 className="mb-4 text-xl font-bold">
+                {filteredProducts.length} รายการในหมวดหมู่:{" "}
+                {searchQuery ? searchQuery : selectedCategory}
+              </h1>
+
+              <div className="grid grid-cols-4 gap-4">
+                {filteredProducts.map((product) => (
+                  <Link
+                    to={`/products/${product.id}`} // Corrected frontend route
+                    key={product.id}
+                  >
+                    <ProductCard
+                      id={product.id}
+                      name={product.name}
+                      weight={product.weight}
+                      price={product.price}
+                      imageUrl={product.imageUrl}
+                      category={product.category}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+        </main>
+      </div>
     </div>
   );
 };
