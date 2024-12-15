@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Homebanner from "../components/Homebanner";
 import Blog from "../components/Blog";
 import Bgcover from "../assets/Backgroundcover.svg";
-
+import Footer from "../components/Footer";
 
 interface DataForApi {
   selection: string;
@@ -142,7 +142,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="flex flex-col justify-center pl-20 bg-fixed bg-cover bg-center min-h-screen min-w-screen">
         <img
           src={Bgcover}
@@ -580,12 +580,12 @@ const Home = () => {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       )}
-    </>
-  );
+      <Footer />
+    </div>
+  )
 };
 
 export default Home;
