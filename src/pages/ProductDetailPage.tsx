@@ -89,7 +89,7 @@ const ProductDetailPage: React.FC = () => {
       </nav>
 
       {/* Shop Choice */}
-      <div className='flex justify-center content-center'>
+      <div className='flex justify-center items-center'>
         <ShopChoice product={product} />
       </div>
     </div>
