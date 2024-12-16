@@ -7,6 +7,11 @@ import Footer from "../components/Footer";
 import arrowleft from "../assets/green-tea.png";
 import productboxAi from "../assets/productboxAi.png";
 // import CustomProduct from "./CustomProduct";
+import Greentea from "../assets/Green-tea-powder.jpg"
+import Blacktea from "../assets/Black-tea.jpg";
+import Oolongtea from "../assets/Oolong-tea.jpg";
+import Whitetea from "../assets/White-tea.jpg";
+
 import greenTea from "../assets/greenTea-p.jpg"
 import blackTea from "../assets/blackTea-p.jpg";
 import oolongTea from "../assets/oolongTea-p.jpg";
@@ -633,7 +638,7 @@ const Home = () => {
                   }}
                 >
                   <img
-                    src="./src/assets/Green-tea-powder.jpg"
+                    src={Greentea}
                     alt="Green-tea"
                     className="w-[185px] h-[96.39px] object-cover rounded mb-2"
                   />
@@ -651,7 +656,7 @@ const Home = () => {
                   }}
                 >
                   <img
-                    src="./src/assets/Black-tea.jpg"
+                    src={Blacktea}
                     alt="Black-tea"
                     className="w-[185px] h-[96.39px] object-cover rounded mb-2"
                   />
@@ -669,7 +674,7 @@ const Home = () => {
                   }}
                 >
                   <img
-                    src="./src/assets/Oolong-tea.jpg"
+                    src={Oolongtea}
                     alt="ชาอู่หลง"
                     className="w-[185px] h-[96.39px] object-cover rounded mb-2"
                   />
@@ -687,7 +692,7 @@ const Home = () => {
                   }}
                 >
                   <img
-                    src="./src/assets/White-tea.jpg"
+                    src={Whitetea}
                     alt="ชาขาว"
                     className="w-[185px] h-[96.39px] object-cover rounded mb-2"
                   />
@@ -1107,7 +1112,7 @@ const Home = () => {
               </p>
 
               {/* ปุ่มและข้อมูลการจัดส่ง */}
-              <div className="text-center">
+              <div className="flex flex-col items-center mt-4">
                 <p className="text-green-600 font-medium mb-2">จัดส่งฟรี! ทุกออเดอร์</p>
                 <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-200">
                   เพิ่มไปยังตะกร้า $300.00
@@ -1120,7 +1125,7 @@ const Home = () => {
           </div>
         </div>
       )}
-    <Footer />
+      <Footer />
     </div>
   );
 };
