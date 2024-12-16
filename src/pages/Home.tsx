@@ -11,6 +11,7 @@ import greenTea from "../assets/greenTea-p.jpg";
 import blackTea from "../assets/blackTea-p.jpg";
 import oolongTea from "../assets/oolongTea-p.jpg";
 import whiteTea from "../assets/whiteTea-p.jpg";
+import Review from "../components/Review";
 
 
 interface DataForApi {
@@ -591,6 +592,7 @@ const Home = () => {
       </div>
       <Homebanner />
       <Blog />
+      <Review />
 
       {/* modalSelection */}
       {modalSelection && (

@@ -3,7 +3,7 @@ import instagramLogo from "../assets/Instagram-logo.svg";
 
 const Footer = () => {
   return (
-    <div id="footer" className="bg-[#556B2F] text-white py-8">
+    <div id="footer" className="bg-black text-white py-8">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between space-y-6 md:space-y-0">
         {/* Left Section */}
         <div className="text-left">
