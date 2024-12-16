@@ -2,9 +2,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
+import { useNavigate } from "react-router-dom";
 import ProjectIcon from "../assets/Project-Group-3-Icon.png";
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login");
+  };
 
   return (
     <div className=" fixed w-full z-50">
@@ -51,7 +59,15 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <CartButton/>
+              <CartButton />
+            </li>
+            <li>
+              <button
+                onClick={logout}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>
