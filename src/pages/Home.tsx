@@ -584,7 +584,7 @@ const Home = () => {
           <br />
           <button
             onClick={() => setModalSelection(true)}
-            className="px-4 py-2 rounded-full bg-red-500 text-white w-28 h-10"
+            className="px-4 py-2 rounded-full bg-red-500 text-white w-28 h-10 hover:bg-red-700 transition-color duration-500"
           >
             เริ่มเลย
           </button>

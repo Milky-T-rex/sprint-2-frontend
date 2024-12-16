@@ -72,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
   const handleProductClick = () => navigate("/products");
 
   return (
-    <div className="container mx-auto p-10 content-center">
+    <div className="container mx-auto p-10 items-center">
       {/* Back Button */}
       {/* <button 
         onClick={handleBackClick} 
@@ -83,8 +83,8 @@ const ProductDetailPage: React.FC = () => {
 
       {/* Breadcrumb */}
       <nav className="flex gap-2 text-gray-600 text-sm mb-8">
-        <button onClick={handleHomeClick} >Home &gt;</button>
-        <button onClick={handleProductClick} >Products &gt;</button>
+        <button onClick={handleHomeClick} className='hover:text-[#667c26] transition-colors duration-500'>Home &gt;</button>
+        <button onClick={handleProductClick} className='hover:text-[#667c26] transition-colors duration-500'>Products &gt;</button>
         <span className="font-semibold text-gray-800">{product.name}</span>
       </nav>
 
