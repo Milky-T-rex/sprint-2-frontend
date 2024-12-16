@@ -2,7 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import ProjectIcon from "../assets/Project-Group-3-Icon.png";
+>>>>>>> 40b05ed51fa8659f46a637242538342a552ce59b
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -16,13 +20,16 @@ const Navbar: React.FC = () => {
     <div className=" fixed w-full z-50">
       <div className="flex justify-between items-center bg-white text-black px-6 py-2 shadow-lg">
         <div className="flex flex-row items-center">
-          <Link to="/" className="text-2xl font-bold">Milky-Tea-Rex</Link>
+          
+          <Link to="/" className="flex items-center text-2xl font-bold">
+            <img src={ProjectIcon} className="flex w-6 object-scale-down"/>Milky-Tea-Rex
+          </Link>
           <div>
-            <ul className="flex gap-6 text-lg px-4 py-1">
+            <ul className="flex gap-6 text-lg px-4">
               <li>
                 <Link
                   to="/products"
-                  className="hover:text-gray-400 cursor-pointer"
+                  className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
                 >
                   Shop
                 </Link>
@@ -30,7 +37,7 @@ const Navbar: React.FC = () => {
               <li>
                 <Link
                   to="/blog"
-                  className="hover:text-gray-400 cursor-pointer"
+                  className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
                 >
                   Blog
                 </Link>

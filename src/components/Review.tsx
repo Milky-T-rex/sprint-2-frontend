@@ -19,7 +19,7 @@ const ReviewSlider: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/review")
+    fetch("https://project-backend-pawt.onrender.com/review/")
       .then((response) => response.json())
       .then((data) => setReviews(data.user_reviews));
   }, []);
@@ -75,8 +75,8 @@ const ReviewSlider: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-300 w-full">
-      <div className="bg-slate-600 py-4 text-white text-xl font-semibold text-center">
+    <div className="bg-gray-200 w-full">
+      <div className="bg-black py-4 text-white text-xl font-semibold text-center">
         Review ลูกค้า
       </div>
       <div className="w-full max-w-5xl mx-auto">
@@ -101,7 +101,7 @@ const ReviewSlider: React.FC = () => {
               {reviews.map((review, index) => (
                 <div
                   key={index}
-                  className="flex flex-col space-y-6 p-6 bg-gray-100 rounded-xl shadow-lg max-w-xs w-full"
+                  className="flex flex-col space-y-6 p-6 bg-[#555D50] rounded-xl shadow-lg max-w-xs w-full"
                 >
                   <div className="flex items-center space-x-6">
                     <div className="border-4 border-red-400 rounded-full overflow-hidden">
@@ -115,11 +115,11 @@ const ReviewSlider: React.FC = () => {
                       />
                     </div>
                     <div className="flex flex-col items-start space-y-2">
-                      <div className="font-bold text-lg text-gray-800">
+                      <div className="font-bold text-lg text-white">
                         {review.name || "Anonymous"}
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div className="text-gray-600 text-base font-bold">
+                        <div className="text-white text-base font-bold">
                           Rate
                         </div>
                         {/* Render stars dynamically based on rating */}
@@ -127,7 +127,7 @@ const ReviewSlider: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-gray-800 text-lg">
+                  <div className="text-white text-lg">
                     "{review.comment || "No comment provided"}"
                   </div>
                 </div>

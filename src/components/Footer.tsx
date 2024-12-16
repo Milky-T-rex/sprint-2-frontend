@@ -3,7 +3,7 @@ import instagramLogo from "../assets/Instagram-logo.svg";
 
 const Footer = () => {
   return (
-    <div id="footer" className="bg-slate-800 text-white py-8">
+    <div id="footer" className="bg-black text-white py-8">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between space-y-6 md:space-y-0">
         {/* Left Section */}
         <div className="text-left">
@@ -59,7 +59,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="bg-slate-700 text-center py-4 mt-8">
+      <div className="bg-[#555D50] text-center py-4 mt-8">
         <p className="text-sm">Copyright 2024 All Rights Reserved</p>
       </div>
     </div>

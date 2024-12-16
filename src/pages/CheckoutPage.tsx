@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { useCart } from "../context/CartContext";
 interface OrderSummaryItem {
   product: string;
   quantity: number;
@@ -10,6 +10,11 @@ interface OrderSummaryItem {
 const Checkout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { clearCart } = useCart();
+
+  const handleClearCart = () => {
+    clearCart();
+  };
 
   const { orderSummary, subtotal, shipping, tax, total } = location.state as {
     orderSummary: OrderSummaryItem[];
@@ -28,6 +33,8 @@ const Checkout: React.FC = () => {
     shippingAddress: "",
     paymentMethod: "card",
     sameAsBilling: true,
+    cardNumber: "",
+    cvv: "",
   });
 
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
@@ -145,6 +152,7 @@ const Checkout: React.FC = () => {
           />
           <div className="flex items-center mb-4">
             <input
+              id="sameAsBilling"
               type="checkbox"
               name="sameAsBilling"
               checked={formData.sameAsBilling}
@@ -175,6 +183,7 @@ const Checkout: React.FC = () => {
           </h3>
           <div className="flex items-center mb-4">
             <input
+              id="paymentMethod"
               type="radio"
               name="paymentMethod"
               value="card"
@@ -186,8 +195,32 @@ const Checkout: React.FC = () => {
               Credit/Debit Card
             </label>
           </div>
+          {formData.paymentMethod === "card" && (
+            <div className="mb-4">
+              <input
+                type="text"
+                name="cardNumber"
+                placeholder="Card Number"
+                value={formData.cardNumber}
+                onChange={handleChange}
+                required
+                className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+              />
+              <input
+                type="text"
+                name="cvv"
+                placeholder="CVV"
+                value={formData.cvv}
+                onChange={handleChange}
+                required
+                maxLength={3}
+                className="w-full p-3 mb-4 border border-gray-300 rounded-md"
+              />
+            </div>
+          )}
           <div className="flex items-center mb-4">
             <input
+              id="paymentMethodCash"
               type="radio"
               name="paymentMethod"
               value="cashOnDelivery"
@@ -195,12 +228,13 @@ const Checkout: React.FC = () => {
               onChange={handleChange}
               className="mr-2"
             />
-            <label htmlFor="paymentMethod" className="text-gray-700">
+            <label htmlFor="paymentMethodCash" className="text-gray-700">
               Cash on Delivery
             </label>
           </div>
           <div className="flex items-center mb-4">
             <input
+              id="paymentMethodTrans"
               type="radio"
               name="paymentMethod"
               value="bankTransfer"
@@ -208,7 +242,7 @@ const Checkout: React.FC = () => {
               onChange={handleChange}
               className="mr-2"
             />
-            <label htmlFor="paymentMethod" className="text-gray-700">
+            <label htmlFor="paymentMethodTrans" className="text-gray-700">
               Bank Transfer
             </label>
           </div>
@@ -234,13 +268,13 @@ const Checkout: React.FC = () => {
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full p-2 border border-gray-300 rounded-md "
                 />
               </div>
               <button
                 type="button"
                 onClick={confirmBankTransfer}
-                className="w-full py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700"
+                className="w-full py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors duration-500"
               >
                 Confirm Payment
               </button>
@@ -250,7 +284,8 @@ const Checkout: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+          className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors duration-500"
+          onClick={handleClearCart}
         >
           Place Order
         </button>
@@ -267,14 +302,20 @@ const Checkout: React.FC = () => {
               <span>
                 {item.product} x{item.quantity}
               </span>
-              <span>${(item.quantity * item.price).toFixed(2)}</span>
+              <span>฿ {(item.quantity * item.price).toFixed(2)}</span>
             </li>
           ))}
         </ul>
-        <h4 className="text-lg font-bold text-gray-900">Subtotal: ${subtotal.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Shipping: ${shipping.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Tax: ${tax.toFixed(2)}</h4>
-        <h4 className="text-lg font-bold text-gray-900">Total: ${total.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Subtotal: ฿ {subtotal.toFixed(2)}
+        </h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Shipping: ฿ {shipping.toFixed(2)}
+        </h4>
+        <h4 className="text-lg font-bold text-gray-900">Tax: ฿ {tax.toFixed(2)}</h4>
+        <h4 className="text-lg font-bold text-gray-900">
+          Total: ฿ {total.toFixed(2)}
+        </h4>
       </div>
     </div>
   );
