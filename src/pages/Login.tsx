@@ -39,7 +39,7 @@ const Login: React.FC = () => {
     }
     setError("");
     try {
-      const response = await axios.post(backendUrl + "/api/user/login", {
+      const response = await axiosInstance.post(backendUrl + "/api/user/login", {
         email: email,
         password: password,
       });
