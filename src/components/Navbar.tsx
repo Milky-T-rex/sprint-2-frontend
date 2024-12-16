@@ -2,11 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-=======
 import ProjectIcon from "../assets/Project-Group-3-Icon.png";
->>>>>>> 40b05ed51fa8659f46a637242538342a552ce59b
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
