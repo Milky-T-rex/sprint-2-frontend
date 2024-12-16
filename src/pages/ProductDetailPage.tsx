@@ -26,7 +26,7 @@ const ProductDetailPage: React.FC = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch(`http://localhost:8000/api/product/${id}`);
+        const response = await fetch(`https://project-backend-pawt.onrender.com/api/product/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }

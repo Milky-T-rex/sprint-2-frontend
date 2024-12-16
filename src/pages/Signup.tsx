@@ -11,7 +11,7 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const backendUrl= import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
 
@@ -22,8 +22,6 @@ const SignUp: React.FC = () => {
       setError("กรุณาใส่ชื่อผู้ใช้งาน");
       return;
     }
-
-    console.log("เชื่อมต่อ BackendUrl",backendUrl);
 
     if (!validateEmail(email)) {
       setError("กรุณากรอก Email ให้ถูกต้อง");
@@ -45,16 +43,14 @@ const SignUp: React.FC = () => {
         password: password,
       });
 
-      // Handle response
       if (response.data && response.data.error) {
         setError(response.data.message);
         return;
       }
 
-      if (response.data && response.data.accessToken) {
-        localStorage.setItem("token", response.data.accessToken);
-        navigate("/login");
-      }
+      alert("Registration Successful!"); // ใช้ toast หรือ sweetalert2 แทนได้
+      navigate("/login");
+
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         // ตรวจสอบว่ามี response และ message หรือไม่
@@ -135,7 +131,7 @@ const SignUp: React.FC = () => {
               >
                 CREATE AN ACCOUNT
               </button>
-              
+
 
               <div>
                 มีบัญชีอยู่แล้ว ?{" "}

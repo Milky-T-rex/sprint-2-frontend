@@ -13,32 +13,28 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const backendUrl= import.meta.env.VITE_BACKEND_URL;
-  
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const checkServerConnection = async () => {
-      
+
       try {
         await axiosInstance.get("/"); // เรียก API เชื่อมต่อเซิร์ฟเวอร์หลัก
         console.log("เชื่อมต่อกับเซิร์ฟเวอร์ได้");
-        
-        
+
+
         setLoading(true);
       } catch (error) {
         console.error("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้", error);
       }
     };
 
-    const intervalId = setInterval(checkServerConnection, 1000);
+    checkServerConnection(); // เรียกครั้งเดียว
+    }, []);
 
-    if (loading) clearInterval(intervalId);
-
-    return () => clearInterval(intervalId);
-  }, [loading]);
-
-  console.log("เชื่อมต่อ BackendUrl",backendUrl);
+  console.log("เชื่อมต่อ BackendUrl", backendUrl);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,10 +51,11 @@ const Login: React.FC = () => {
     setError("");
 
     try {
-      const response = await axios.post(backendUrl + "/api/user/login", {
+      const response = await axiosInstance.post(backendUrl + "/api/user/login", {
         email: email,
         password: password,
       });
+      console.log(import.meta.env.VITE_BACKEND_URL)
 
       if (response.data && response.data.accessToken) {
         console.log("login สำเร็จ");
@@ -105,7 +102,7 @@ const Login: React.FC = () => {
             <form onSubmit={handleLogin}>
               <div className="flex items-center justify-center min-h-screenrelative">
 
-         
+
 
 
                 <div className="relative w-full max-w-md bg-white p-8 rounded-lg shadow-lg z-10">
@@ -116,46 +113,46 @@ const Login: React.FC = () => {
                     Quick & Simple way to Automate your payment
                   </p>
 
-                  
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Email Address"
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <PasswordInput
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
-                    <div className="flex items-center w-full">
-                      <input type="checkbox" className="mr-2" />
-                      <p className="text-sm text-gray-600">
-                        I agree to the{" "}
-                        <a href="#" className="text-blue-500 underline">
-                          Terms of Service
-                        </a>{" "}
-                        and{" "}
-                        <a href="#" className="text-blue-500 underline">
-                          Privacy Policy.
-                        </a>
-                      </p>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      Login
-                    </button>
 
-                    <div>
-                      หากไม่มีบัญชี ?{" "}
-                      <a href="/signup" className="text-blue-500 underline">
-                        สมัครสมาชิก
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email Address"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <PasswordInput
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
+                  <div className="flex items-center w-full">
+                    <input type="checkbox" className="mr-2" />
+                    <p className="text-sm text-gray-600">
+                      I agree to the{" "}
+                      <a href="#" className="text-blue-500 underline">
+                        Terms of Service
+                      </a>{" "}
+                      and{" "}
+                      <a href="#" className="text-blue-500 underline">
+                        Privacy Policy.
                       </a>
-                    </div>
-                  
+                    </p>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    Login
+                  </button>
+
+                  <div>
+                    หากไม่มีบัญชี ?{" "}
+                    <a href="/signup" className="text-blue-500 underline">
+                      สมัครสมาชิก
+                    </a>
+                  </div>
+
 
                   <div className="flex items-center my-6">
                     <hr className="flex-1 border-gray-300" />
