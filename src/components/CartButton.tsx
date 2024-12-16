@@ -18,7 +18,7 @@ const CartButton: React.FC = () => {
     <div className="relative">
       <button
         onClick={handleCartClick}
-        className="bg-black hover:bg-[#667C26] text-white transition-colors duration-500  font-bold py-2 px-4 rounded flex items-center"
+        className="bg-black hover:bg-[#667C26] text-white transition-colors duration-500  font-bold py-2 px-4 rounded flex items-center text-sm "
         aria-label={`Cart with ${totalItems} items`}
       >
         <i className="fa fa-shopping-cart mr-2"></i>

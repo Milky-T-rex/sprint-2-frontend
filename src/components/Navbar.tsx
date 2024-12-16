@@ -15,8 +15,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className=" fixed w-full z-50">
-      <div className="flex justify-between items-center bg-white text-black px-6 py-2 shadow-lg">
+    <div className=" fixed w-full z-50 ">
+      <div className="flex justify-between items-center bg-white text-black px-6 py-2 shadow-lg h-16">
         <div className="flex flex-row items-center">
           
           <Link to="/" className="flex items-center text-2xl font-bold">
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
             <li>
               <button
                 onClick={logout}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                className="bg-black text-white px-4 py-2 rounded hover:bg-red-800 text-sm font-bold"
               >
                 Logout
               </button>
