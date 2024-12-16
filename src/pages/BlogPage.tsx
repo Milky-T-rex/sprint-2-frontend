@@ -142,9 +142,9 @@ const BlogPage: React.FC = () => {
         </Box>
 
         {/* Card Section */}
-        <Box className="flex flex-col items-center md:flex-row justify-center gap-5 mt-10">
+        <Box className="flex flex-col items-center md:flex-row justify-center gap-5 mt-10 shadow-md">
           {cards.map((card, index) => (
-            <div key={index} className="w-full sm:w-[380px] md:w-[300px] lg:w-[320px] xl:w-[350px] flex flex-col rounded-3xl bg-slate-200 border-2 min-h-[400px] max-h-[400px]">
+            <div key={index} className="w-full sm:w-[380px] md:w-[300px] lg:w-[320px] xl:w-[350px] flex flex-col rounded-3xl bg-black text-white border-2 min-h-[400px] max-h-[400px]">
               <img
                 src={card.img}
                 className="w-full h-48 object-cover rounded-t-3xl border-2 border-b-black"
@@ -154,7 +154,7 @@ const BlogPage: React.FC = () => {
                 <div className="p-3 py-8">{card.title}</div>
                 <button
                   onClick={() => handleReadMore(index)} // กดแล้วเปลี่ยนหน้า
-                  className="px-4 py-2 rounded-full bg-red-500 text-white w-28 h-10 hover:bg-red-600 transition-colors"
+                  className="px-4 py-2 rounded-full bg-white text-black w-28 h-10 hover:bg-red-600 transition-colors"
                 >
                   อ่านต่อ
                 </button>
