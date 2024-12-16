@@ -1,8 +1,8 @@
-import { ObjectId } from "mongodb";
+
 import OolongTea from "../assets/Oolong-tea.jpg"
 
 export interface Product {
-    _id: ObjectId;
+    
     id: number;
     name: string;
     weight: string;
@@ -22,8 +22,8 @@ const products: Product[] = [
         imageUrl: "/path/to/green-tea-image.jpg",
         category: "ชาเขียว",
         description: "ชาเขียวผสมสูตรพิเศษ หอมกลิ่นใบชาแท้ๆ และสมุนไพร",
-        ingredients: ["ใบชาเขียว", "ดอกเก๊กฮวย", "ใบเตย"],
-        _id: new ObjectId
+        ingredients: ["ใบชาเขียว", "ดอกเก๊กฮวย", "ใบเตย"]
+        
     },
     {
         id: 2,
@@ -33,8 +33,8 @@ const products: Product[] = [
         imageUrl: "/path/to/black-tea-image.jpg",
         category: "ชาดำ",
         description: "ชาดำคลาสสิก รสชาติกลมกล่อม ดื่มง่าย",
-        ingredients: ["ใบชาดำ"],
-        _id: new ObjectId
+        ingredients: ["ใบชาดำ"]
+        
     },
     {
         id: 3,
@@ -44,8 +44,8 @@ const products: Product[] = [
         imageUrl: OolongTea,
         category: "ชาอู่หลง",
         description: "ชาอู่หลงพรีเมียม ผ่านกระบวนการหมักอย่างพิถีพิถัน",
-        ingredients: ["ใบชาอู่หลง"],
-        _id: new ObjectId
+        ingredients: ["ใบชาอู่หลง"]
+        
     },
     {
         id: 4,
@@ -55,9 +55,8 @@ const products: Product[] = [
         imageUrl: "/path/to/white-tea-image.jpg",
         category: "ชาขาว",
         description: "ชาขาวบลอสซั่ม หอมละมุนจากดอกไม้ธรรมชาติ",
-        ingredients: ["ใบชาขาว", "ดอกมะลิ", "ดอกกุหลาบ"],
-        _id: new ObjectId
-    },
+        ingredients: ["ใบชาขาว", "ดอกมะลิ", "ดอกกุหลาบ"]
+    }
 ];
 
 export default products;

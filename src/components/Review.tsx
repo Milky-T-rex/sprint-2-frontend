@@ -19,7 +19,7 @@ const ReviewSlider: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/review")
+    fetch("https://project-backend-pawt.onrender.com/review/")
       .then((response) => response.json())
       .then((data) => setReviews(data.user_reviews));
   }, []);

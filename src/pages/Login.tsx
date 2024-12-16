@@ -5,64 +5,47 @@ import { useEffect, useState } from "react";
 import { validateEmail } from "../utils/helper";
 import axiosInstance from "../utils/axiosinstance";
 import axios from "axios";
-
-
-
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const backendUrl= import.meta.env.VITE_BACKEND_URL;
-  
   const navigate = useNavigate();
-
   useEffect(() => {
     const checkServerConnection = async () => {
-      
       try {
         await axiosInstance.get("/"); // เรียก API เชื่อมต่อเซิร์ฟเวอร์หลัก
         console.log("เชื่อมต่อกับเซิร์ฟเวอร์ได้");
-        
-        
         setLoading(true);
       } catch (error) {
         console.error("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้", error);
       }
     };
-
     const intervalId = setInterval(checkServerConnection, 1000);
-
     if (loading) clearInterval(intervalId);
-
     return () => clearInterval(intervalId);
   }, [loading]);
-
   console.log("เชื่อมต่อ BackendUrl",backendUrl);
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!validateEmail(email)) {
       setError("กรุณากรอก Email ให้ถูกต้อง");
       return;
     }
-
     if (!password) {
       setError("กรุณาใส่รหัสผ่าน");
       return;
     }
     setError("");
-
     try {
-      const response = await axios.post(backendUrl + "/api/user/login", {
+      const response = await axiosInstance.post(backendUrl + "/api/user/login", {
         email: email,
         password: password,
       });
-
+      console.log(import.meta.env.VITE_BACKEND_URL)
       if (response.data && response.data.accessToken) {
         console.log("login สำเร็จ");
-
         localStorage.setItem("token", response.data.accessToken);
         // ตั้งค่า accessToken ในคุกกี้
         document.cookie = `token=${response.data.accessToken}`;
@@ -85,7 +68,6 @@ const Login: React.FC = () => {
       }
     }
   };
-
   return (
     <>
       {!loading ? (
@@ -104,10 +86,6 @@ const Login: React.FC = () => {
           <div className="flex items-center justify-center mt-28">
             <form onSubmit={handleLogin}>
               <div className="flex items-center justify-center min-h-screenrelative">
-
-         
-
-
                 <div className="relative w-full max-w-md bg-white p-8 rounded-lg shadow-lg z-10">
                   <h2 className="text-center text-2xl font-semibold text-gray-800 mb-2">
                     Sign in to Milky Tea-rex
@@ -115,8 +93,6 @@ const Login: React.FC = () => {
                   <p className="text-center text-sm text-gray-600 mb-6">
                     Quick & Simple way to Automate your payment
                   </p>
-
-                  
                     <input
                       type="email"
                       value={email}
@@ -148,21 +124,17 @@ const Login: React.FC = () => {
                     >
                       Login
                     </button>
-
                     <div>
                       หากไม่มีบัญชี ?{" "}
                       <a href="/signup" className="text-blue-500 underline">
                         สมัครสมาชิก
                       </a>
                     </div>
-                  
-
                   <div className="flex items-center my-6">
                     <hr className="flex-1 border-gray-300" />
                     <span className="px-4 text-gray-500 text-sm">OR</span>
                     <hr className="flex-1 border-gray-300" />
                   </div>
-
                   <div className="flex justify-center space-x-4">
                     <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
                       <img src="google-logo-url" alt="Google" className="h-6 w-6" />
@@ -174,7 +146,6 @@ const Login: React.FC = () => {
                       <img src="facebook-logo-url" alt="Facebook" className="h-6 w-6" />
                     </button>
                   </div>
-
                   <p className="text-center text-xs text-gray-500 mt-6">
                     © 2024. All Rights Reserved. Milky Tea-rex
                   </p>
@@ -187,5 +158,4 @@ const Login: React.FC = () => {
     </>
   );
 };
-
 export default Login;
