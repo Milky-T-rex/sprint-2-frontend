@@ -1,6 +1,7 @@
-// import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { BlogContext } from "../pages/BlogPage";
+
 
 const Blog = () => {
   // กำหนดประเภทสำหรับ Card
@@ -13,7 +14,7 @@ const Blog = () => {
         <div className="text-5xl py-4 w-[250px]">รวมวิธีการชง เกร็ดความรู้</div>
         <div className="text-xl py-2">ด้านชาที่น่าสนใจ</div>
         <Link to="/blog">
-          <button className="px-4 py-2 rounded-full bg-black hover:bg-red-600 text-white w-28 h-10 transition-colors self-center">
+          <button className="px-4 py-2 rounded-full bg-black  text-white w-28 h-10 hover:bg-red-700 transition-color duration-500 self-center">
             เริ่มเลย
           </button>
         </Link>
@@ -36,7 +37,7 @@ const Blog = () => {
                 {card.title}
               </div>
               <Link to={`/article/${card.id}`}>
-                <button className="px-4 py-2 rounded-full bg-white text-black w-28 h-10 hover:bg-red-600 transition-colors self-center">
+                <button className="px-4 py-2 rounded-full bg-white text-black w-28 h-10 hover:bg-red-700 transition-color duration-500 self-center">
                   อ่านต่อ
                 </button>
               </Link>

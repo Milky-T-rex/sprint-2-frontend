@@ -79,8 +79,8 @@ const ProductListPage: React.FC = () => {
   return (
     <div className="mx-auto p-10">
       <nav className="flex gap-2 text-gray-600 text-sm">
-          <button onClick={handleHomeClick} >Home &gt;</button>
-          <button onClick={handleProductClick} >Products &gt;</button>
+          <button onClick={handleHomeClick} className="hover:text-[#667c26] transition-colors duration-500">Home &gt;</button>
+          <button onClick={handleProductClick} className="hover:text-[#667c26] transition-colors duration-500">Products &gt;</button>
         </nav>
       <div className="flex">
         <Sidebar

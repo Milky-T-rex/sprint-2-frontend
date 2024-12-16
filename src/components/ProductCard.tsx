@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
         <h2 className="text-md font-semibold truncate">{name}</h2>
         <p className="text-sm text-gray-600">{weight}</p>
-        <p className="text-md font-bold text-green-600">{price}</p>
+        <p className="text-md font-bold text-green-600">฿ {price}</p>
       </Link>
     </div>
   );

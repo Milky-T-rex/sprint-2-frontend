@@ -62,7 +62,7 @@ const ShopChoice: React.FC<ShopChoiceProps> = ({ product }) => {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+          className="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-[#667c26] transition-colors duration-500"
         >
           Add to Cart
         </button>

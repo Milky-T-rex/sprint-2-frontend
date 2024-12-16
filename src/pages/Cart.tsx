@@ -65,22 +65,22 @@ const Cart: React.FC = () => {
                   <div className="w-16 h-16"><img src={rainbow}/></div> {/* Placeholder for image */}
                   <div>
                     <p className="text-lg font-medium">{item.name}</p>
-                    <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                    <p className="text-gray-600">฿ {item.price.toFixed(2)}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   
                   <button
                     onClick={() => handleDecreaseQuantity(item.id)}
-                    className="text-gray-500 hover:text-gray-700 text-lg font-bold px-3 py-1 rounded"
+                    className="rounded-full text-gray-500 hover:bg-[#667C26] hover:text-white transition-colors duration-500 text-lg font-bold px-3 py-1"
                     disabled={item.quantity <= 1} // ไม่ให้ลดจำนวนสินค้าถ้าปริมาณเป็น 1
                   >
                     -
                   </button>
-                  <p>Quantity: {item.quantity}</p>
+                  <p>Quantity: <strong>{item.quantity}</strong></p>
                   <button
                     onClick={() => handleIncreaseQuantity(item.id)}
-                    className="text-gray-500 hover:text-gray-700 text-lg font-bold px-3 py-1 rounded"
+                    className="rounded-full text-gray-500 hover:bg-[#667C26] hover:text-white transition-colors duration-500 text-lg font-bold px-3 py-1"
                   >
                     +
                   </button>
@@ -88,7 +88,7 @@ const Cart: React.FC = () => {
 
                   <button
                     onClick={() => handleRemoveItem(item.id)}
-                    className="text-gray-500 hover:text-gray-700"
+                    className="text-red-500 hover:text-red-800 transition-colors duration-500"
                   >
                     <i className="fas fa-trash-alt"></i> {/* Trash Icon */}
                   </button>
@@ -105,27 +105,27 @@ const Cart: React.FC = () => {
       <div className="w-1/4 bg-white p-6 border-l">
         <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
         <div className="space-y-4">
-          <p>Subtotal: {calculateSubtotal().toFixed(2)}</p>
-          <p>Shipping: 35</p>
-          <p>Tax: 0</p>
-          <p className="font-bold">Total: ${(calculateSubtotal() + 35).toFixed(2)}</p>
+          <p>Subtotal: ฿ {calculateSubtotal().toFixed(2)}</p>
+          <p>Shipping: ฿ 35.00</p>
+          <p>Tax: ฿ 0.00</p>
+          <p className="font-bold">Total: ฿ {(calculateSubtotal() + 35).toFixed(2)}</p>
         </div>
         <div className="mt-6 space-y-4">
           <button
             onClick={handleClearCart}
-            className="w-full py-2 bg-black text-white rounded hover:bg-gray-800"
+            className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-800 transition-colors duration-500"
           >
             Clear Cart
           </button>
           <button
             onClick={handleAddMoreProducts }
-            className="w-full py-2 mt-4 text-gray-600 hover:text-gray-800"
+            className="w-full py-2 mt-4 bg-slate-400 text-white rounded hover:bg-[#667C26] transition-colors duration-500"
           >
             Add More Products
           </button>
           <button
             onClick={handleCheckout}
-            className="w-full py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="w-full py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-950 transition-colors duration-500"
           >
             Proceed to Checkout
           </button>
