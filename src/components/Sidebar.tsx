@@ -55,19 +55,19 @@ interface SidebarProps  {
 
 const Sidebar: React.FC<SidebarProps> = ({ onCategoryChange, onSearch }) => {
   return (
-    <aside className="w-1/5 p-4 bg-white border-r-2">
+    <aside className="w-1/5 p-4 bg-white border-r-2 flex flex-col">
 
       <div>
         <SearchBox onSearch={onSearch} />
       </div>
       
 
-      <ul>
+      <ul className='w-full flex flex-col items-center'>
         {teaCategories.map((category) => (
-          <li key={category} className="mb-4 border-t">
+          <li key={category} className="w-full border-t">
             <button
               onClick={() => onCategoryChange(category)}
-              className=" text-black "
+              className="w-full py-3 flex items-center text-black rounded hover:bg-[#667C26] hover:text-white transition-color duration-500"
             >
               {category}
             </button>
