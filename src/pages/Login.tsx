@@ -78,9 +78,8 @@ const Login: React.FC = () => {
     <>
       {!loading ? (
         <>
-          {/* <Navbar /> */}
           <div className="flex items-center justify-center">
-            <div className="w-96 border rounded bg-white px-7 py-10 flex justify-center">
+            <div className="w-96 border rounded bg-white px-7 py-10 flex justify-center mt-28">
               <h1>
                 กำลังเชื่อมต่อ server... <br /> โปรดรอสักครู่.
               </h1>
@@ -89,9 +88,9 @@ const Login: React.FC = () => {
         </>
       ) : (
         <>
-          <div className="flex items-center justify-center mt-28">
+          <div className="">
             <form onSubmit={handleLogin}>
-              <div className="flex items-center justify-center min-h-screenrelative">
+              <div className="flex items-center justify-center min-h-screen relative">
                 <div className="relative w-full max-w-md bg-white p-8 rounded-lg shadow-lg z-10">
                   <h2 className="text-center text-2xl font-semibold text-gray-800 mb-2">
                     Sign in to Milky Tea-rex
