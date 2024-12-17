@@ -56,17 +56,16 @@ const Navbar: React.FC = () => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex gap-6 text-lg">
           <ul className="flex gap-6 items-center">
-            <li>
-              <Link to="/login" className="hover:text-gray-400 cursor-pointer py-4">
-                <img
-                  src="https://icon-library.com/images/login-icon-images/login-icon-images-0.jpg"
-                  alt="Login"
-                  className="w-8 h-8 rounded-full text-white bg-black hover:bg-[#667C26]"
-                />
-              </Link>
-            </li>
+
             <li>
               <CartButton />
+            </li>
+            <li>
+              <Link to="/login">
+                <button className="bg-black text-white px-4 py-2 rounded hover:bg-blue-800 text-sm font-bold">
+                  SignIn/SignUp
+                </button>
+              </Link>
             </li>
             <li>
               <button
@@ -102,21 +101,19 @@ const Navbar: React.FC = () => {
                 Blog
               </Link>
             </li>
+
+            <li>
+              <CartButton />
+            </li>
             <li>
               <Link
                 to="/login"
-                className="hover:text-gray-400 cursor-pointer py-4"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img
-                  src="https://icon-library.com/images/login-icon-images/login-icon-images-0.jpg"
-                  alt="Login"
-                  className="w-8 h-8 "
-                />
+                <button className="bg-black text-white px-4 py-2 rounded hover:bg-blue-800 text-sm font-bold">
+                  SignIn/SignUp
+                </button>
               </Link>
-            </li>
-            <li>
-              <CartButton />
             </li>
             <li>
               <button

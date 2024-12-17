@@ -95,8 +95,7 @@ const SignUp: React.FC = () => {
               placeholder="User Name"
               className="w-full px-4 py-2 border rounded-md focus:outline-none"
             />
-          </div>
-          <div className="space-y-4">
+
             <input
               type="email"
               value={email}
@@ -104,8 +103,7 @@ const SignUp: React.FC = () => {
               placeholder="Email Address"
               className="w-full px-4 py-2 border rounded-md focus:outline-none"
             />
-          </div>
-          <div className="space-y-4">
+
             <PasswordInput
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -114,8 +112,8 @@ const SignUp: React.FC = () => {
           </div>
           {error && <p className="text-red-500 text-xs pt-2">{error} </p>}
           <div className="flex items-center w-full my-4">
-            <input type="checkbox" className="mr-2" />
-            <p className="text-sm text-gray-600">
+            <input id="agree" type="checkbox" className="mr-2" />
+            <label htmlFor="agree" className="text-sm text-gray-600">
               I agree to the{" "}
               <a href="#" className="text-blue-500 underline">
                 Terms of Service
@@ -125,11 +123,11 @@ const SignUp: React.FC = () => {
                 Privacy Policy
               </a>
               .
-            </p>
+            </label>
           </div>
           <button
             type="submit"
-            className="w-full py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full py-2 bg-black text-white rounded-md hover:bg-[#667c26] transition-colors duration-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             CREATE AN ACCOUNT
           </button>
