@@ -55,15 +55,13 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex gap-6 text-lg">
- 
-
           <ul className="flex gap-6 items-center">
             <li>
               <Link to="/login" className="hover:text-gray-400 cursor-pointer py-4">
                 <img
                   src="https://icon-library.com/images/login-icon-images/login-icon-images-0.jpg"
                   alt="Login"
-                  className="w-8 h-8"
+                  className="w-8 h-8 rounded-full text-white bg-black hover:bg-[#667C26]"
                 />
               </Link>
             </li>
@@ -113,7 +111,7 @@ const Navbar: React.FC = () => {
                 <img
                   src="https://icon-library.com/images/login-icon-images/login-icon-images-0.jpg"
                   alt="Login"
-                  className="w-8 h-8"
+                  className="w-8 h-8 "
                 />
               </Link>
             </li>
