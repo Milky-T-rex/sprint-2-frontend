@@ -68,11 +68,11 @@ const ProductListPage: React.FC = () => {
     const handleHomeClick = () => navigate("/");
     const handleProductClick = () => navigate("/products");
   return (
-    <div className="mx-auto p-10">
-      <nav className="flex gap-2 text-gray-600 text-sm">
+    <div className="flex flex-col mx-auto p-10">
+      <nav className="flex text-gray-600 text-sm flex-wrap">
           <button onClick={handleHomeClick} className="hover:text-[#667c26] transition-colors duration-500">Home &gt;</button>
           <button onClick={handleProductClick} className="hover:text-[#667c26] transition-colors duration-500">Products &gt;</button>
-        </nav>
+      </nav>
       <div className="flex">
         <Sidebar
           onCategoryChange={handleCategoryChange}

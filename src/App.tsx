@@ -4,7 +4,7 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/Navbar";
-import CartButton from "./components/CartButton";
+
 // Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -27,7 +27,6 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <div className="content app-content">
-          <CartButton />
           <Routes>
             {/* General Routes */}
             <Route path="/" element={<Home />} />
