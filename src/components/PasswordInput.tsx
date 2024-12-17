@@ -5,9 +5,15 @@ interface PasswordInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  className?: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChange, placeholder }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({
+  value,
+  onChange,
+  placeholder,
+  className,
+}) => {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
 
   const toggleShowPassword = () => {
@@ -15,8 +21,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChange, placehol
   };
 
   return (
-    // <div className="flex items-center bg-transparent border-[1.5px] px-5 rounded mb-3">
-    <div className="flex w-full px-4 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[41px]">
+    <div
+      className={`flex items-center w-full px-4 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[41px] ${className}`}
+    >
       <input
         value={value}
         onChange={onChange}
