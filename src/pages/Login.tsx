@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { validateEmail } from "../utils/helper";
 import axiosInstance from "../utils/axiosinstance";
 import axios from "axios";
+import facebookLogo from "../assets/Facebook-logo.svg";
+import googleLogo from "../assets/Google_Icons-09-512.webp";
+import appleLogo from "../assets/Apple_logo_black.svg.png"
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -141,15 +144,15 @@ const Login: React.FC = () => {
                     <hr className="flex-1 border-gray-300" />
                   </div>
                   <div className="flex justify-center space-x-4">
-                    <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
-                      <img src="google-logo-url" alt="Google" className="h-6 w-6" />
-                    </button>
-                    <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
-                      <img src="apple-logo-url" alt="Apple" className="h-6 w-6" />
-                    </button>
-                    <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
-                      <img src="facebook-logo-url" alt="Facebook" className="h-6 w-6" />
-                    </button>
+                    <a href="https://accounts.google.com/o/oauth2/auth" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                      <img src={googleLogo} alt="Google" className="h-6 w-6" />
+                    </a>
+                    <a href="https://appleid.apple.com/auth/authorize" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                      <img src={appleLogo} alt="Apple" className="h-6 w-5" />
+                    </a>
+                    <a href="https://www.facebook.com/vX.X/dialog/oauth" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200">
+                      <img src={facebookLogo} alt="Facebook" className="h-6 w-6" />
+                    </a>
                   </div>
                   <p className="text-center text-xs text-gray-500 mt-6">
                     © 2024. All Rights Reserved. Milky Tea-rex

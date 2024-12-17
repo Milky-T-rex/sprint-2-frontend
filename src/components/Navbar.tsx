@@ -18,10 +18,31 @@ const Navbar: React.FC = () => {
     <div className="fixed w-full z-50">
       <div className="flex justify-between items-center bg-white text-black px-6 py-2 shadow-lg h-16">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center text-2xl font-bold">
+          <Link to="/" className="flex items-center text-2xl font-bold pr-6">
             <img src={ProjectIcon} className="flex w-6 object-scale-down mr-2" alt="Logo" />
             Milky-Tea-Rex
           </Link>
+
+          <div className="hidden lg:flex gap-6 text-lg">
+            <ul className="flex gap-6 items-center">
+              <li>
+                <Link
+                  to="/products"
+                  className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
+                >
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/blog"
+                  className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
+                >
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Hamburger Button */}
@@ -34,24 +55,7 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex gap-6 text-lg">
-          <ul className="flex gap-6 items-center">
-            <li>
-              <Link
-                to="/products"
-                className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
-              >
-                Shop
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/blog"
-                className="font-bold hover:text-[#667C26] transition-colors duration-500 cursor-pointer"
-              >
-                Blog
-              </Link>
-            </li>
-          </ul>
+ 
 
           <ul className="flex gap-6 items-center">
             <li>
