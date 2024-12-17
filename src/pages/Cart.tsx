@@ -102,7 +102,7 @@ const Cart: React.FC = () => {
       </div>
 
       {/* Right Side: Order Summary */}
-      <div className="w-1/4 bg-white p-6 border-l">
+      <div className="w-1/4 bg-white p-6 border-l mt-10">
         <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
         <div className="space-y-4">
           <p>Subtotal: ฿ {calculateSubtotal().toFixed(2)}</p>

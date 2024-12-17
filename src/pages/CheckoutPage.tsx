@@ -93,7 +93,7 @@ const Checkout: React.FC = () => {
         onSubmit={handleSubmit}
         className="w-full md:w-3/5 p-6 bg-white shadow-md rounded-lg"
       >
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Checkout</h2>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6 mt-10">Checkout</h2>
 
         {/* Personal Details Section */}
         <div className="mb-6">
@@ -292,7 +292,7 @@ const Checkout: React.FC = () => {
       </form>
 
       {/* Right Section: Order Summary */}
-      <div className="w-full md:w-1/3 p-6 bg-white shadow-md rounded-lg">
+      <div className="w-full md:w-1/3 p-6 bg-white shadow-md rounded-lg mt-10 ">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">
           Order Summary
         </h3>
