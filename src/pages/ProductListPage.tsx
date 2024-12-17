@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from "../components/Sidebar";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
+
 interface Product {
-  id: string; // Ensure this maps to _id in the API
+  id: string;
   _id: string;
   name: string;
   weight: string;
@@ -12,13 +13,15 @@ interface Product {
   imageUrl: string;
   category: string;
 }
+
 const ProductListPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   // Fetch products from the API
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,7 +33,6 @@ const ProductListPage: React.FC = () => {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        // Map API response `_id` to `id` for consistency
         const mappedData = data.map((product: Product) => ({
           id: product._id,
           name: product.name,
@@ -48,69 +50,65 @@ const ProductListPage: React.FC = () => {
     };
     fetchProducts();
   }, []);
-  // ฟังก์ชันสำหรับเปลี่ยนหมวดหมู่
+
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     setSearchQuery("");
   };
+
   const handleSearch = (query: string) => {
     setSelectedCategory("ทั้งหมด");
-    setSearchQuery(query); // อัปเดตคำค้นหา
+    setSearchQuery(query);
   };
-  // กรองสินค้า
+
   const filteredProducts = products.filter(
     (product) =>
-      (selectedCategory === "ทั้งหมด" ||
-        product.category === selectedCategory) &&
+      (selectedCategory === "ทั้งหมด" || product.category === selectedCategory) &&
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-    // Navigate back to the previous page
-    const handleHomeClick = () => navigate("/");
-    const handleProductClick = () => navigate("/products");
+
+  const handleHomeClick = () => navigate("/");
+  const handleProductClick = () => navigate("/products");
+
   return (
     <div className="flex flex-col mx-auto p-10">
-      <nav className="flex text-gray-600 text-sm flex-wrap">
-          <button onClick={handleHomeClick} className="hover:text-[#667c26] transition-colors duration-500">Home &gt;</button>
-          <button onClick={handleProductClick} className="hover:text-[#667c26] transition-colors duration-500">Products &gt;</button>
+      <nav className="flex text-gray-600 text-sm flex-wrap mb-6">
+        <button onClick={handleHomeClick} className="hover:text-[#667c26] transition-colors duration-500">Home &gt;</button>
+        <button onClick={handleProductClick} className="hover:text-[#667c26] transition-colors duration-500">Products &gt;</button>
       </nav>
-      <div className="flex">
-        <Sidebar
-          onCategoryChange={handleCategoryChange}
-          onSearch={handleSearch}
-        />
-        <main className="w-3/4 p-4">
-          {loading ? (
-            <p>กำลังโหลดสินค้า...</p>
-          ) : error ? (
-            <p className="text-red-500">เกิดข้อผิดพลาด: {error}</p>
-          ) : (
-            <>
-              <h1 className="mb-4 text-xl font-bold">
-                {filteredProducts.length} รายการในหมวดหมู่:{" "}
-                {searchQuery ? searchQuery : selectedCategory}
-              </h1>
-              <div className="grid grid-cols-4 gap-4">
-                {filteredProducts.map((product) => (
-                  <Link
-                    to={`/products/${product.id}`} // Corrected frontend route
-                    key={product.id}
-                  >
-                    <ProductCard
-                      id={product.id}
-                      name={product.name}
-                      weight={product.weight}
-                      price={product.price}
-                      imageUrl={product.imageUrl}
-                      category={product.category}
-                    />
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
-        </main>
+      <div className="flex flex-wrap">
+        <Sidebar onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
+        <main className="w-full lg:w-3/4 p-4">
+  {loading ? (
+    <p>กำลังโหลดสินค้า...</p>
+  ) : error ? (
+    <p className="text-red-500">เกิดข้อผิดพลาด: {error}</p>
+  ) : (
+    <>
+      <h1 className="mb-4 text-xl font-bold">
+        {filteredProducts.length} รายการในหมวดหมู่: {searchQuery || selectedCategory}
+      </h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {filteredProducts.map((product) => (
+          <Link to={`/products/${product.id}`} key={product.id}>
+            <ProductCard
+              id={product.id}
+              name={product.name}
+              weight={product.weight}
+              price={product.price}
+              imageUrl={product.imageUrl}
+              category={product.category}
+            />
+          </Link>
+        ))}
+      </div>
+    </>
+  )}
+</main>
+
       </div>
     </div>
   );
 };
+
 export default ProductListPage;

@@ -142,7 +142,7 @@ const BlogPage: React.FC = () => {
         </Box>
 
         {/* Card Section */}
-        <Box className="flex flex-col items-center md:flex-row justify-center gap-5 mt-10 shadow-md">
+        <Box className="flex flex-col items-center md:flex-row justify-center gap-5 mt-10 shadow-lg">
           {cards.map((card, index) => (
             <div key={index} className="w-full sm:w-[380px] md:w-[300px] lg:w-[320px] xl:w-[350px] flex flex-col rounded-3xl bg-black text-white border-2 min-h-[400px] max-h-[400px]">
               <img
