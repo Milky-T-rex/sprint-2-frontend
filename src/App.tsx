@@ -5,7 +5,6 @@ import "./App.css";
 // Components
 import Navbar from "./components/Navbar";
 import CartButton from "./components/CartButton";
-
 // Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
