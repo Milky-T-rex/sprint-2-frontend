@@ -79,7 +79,7 @@ const Login: React.FC = () => {
       {!loading ? (
         <>
           {/* <Navbar /> */}
-          <div className="flex items-center justify-center mt-28">
+          <div className="flex items-center justify-center">
             <div className="w-96 border rounded bg-white px-7 py-10 flex justify-center">
               <h1>
                 กำลังเชื่อมต่อ server... <br /> โปรดรอสักครู่.
