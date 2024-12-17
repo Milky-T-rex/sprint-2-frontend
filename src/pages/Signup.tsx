@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import PasswordInput from "../components/PasswordInput";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helper";
@@ -135,9 +136,9 @@ const SignUp: React.FC = () => {
           </button>
           <div className="px-4 py-2 text-center">
             มีบัญชีอยู่แล้ว ?{" "}
-            <a href="/login" className="text-blue-500 underline">
+            <Link to="/login" className="text-blue-500 underline">
               เข้าสู่ระบบ
-            </a>
+            </Link>
           </div>
           <div className="flex items-center my-6">
             <hr className="flex-1 border-gray-300" />
