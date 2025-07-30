@@ -53,12 +53,12 @@ const AboutTea = () => {
             ทั้งสำหรับผู้ที่ต้องการสัมผัสรสชาติธรรมชาติหรือเป็นฐานสำหรับชาสูตรต่าง
             ๆ ของคุณเอง
           </li>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, ad
-            quis sunt nulla, nam molestiae corrupti perspiciatis dolor
-            temporibus eos, eum explicabo impedit quam aperiam iste ratione!
-            Reiciendis, doloribus et.
-          </p>
+          <h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+            cumque temporibus placeat! Veniam sunt non quas, tempore rerum optio
+            obcaecati sint assumenda modi, magnam sit quidem vitae explicabo
+            consectetur facilis.
+          </h3>
         </ul>
       </div>
     </div>
