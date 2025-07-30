@@ -48,17 +48,6 @@ const AboutTea = () => {
             ทั้งสำหรับผู้ที่ต้องการสัมผัสรสชาติธรรมชาติหรือเป็นฐานสำหรับชาสูตรต่าง
             ๆ ของคุณเอง
           </li>
-          <li className="list-disc">
-            สะดวกและพร้อมชงทันที: ชาอบแห้งของเราชงง่าย
-            ทั้งสำหรับผู้ที่ต้องการสัมผัสรสชาติธรรมชาติหรือเป็นฐานสำหรับชาสูตรต่าง
-            ๆ ของคุณเอง
-          </li>
-          <h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            cumque temporibus placeat! Veniam sunt non quas, tempore rerum optio
-            obcaecati sint assumenda modi, magnam sit quidem vitae explicabo
-            consectetur facilis.
-          </h3>
         </ul>
       </div>
     </div>
